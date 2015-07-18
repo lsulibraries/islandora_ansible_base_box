@@ -27,4 +27,10 @@
   args:
     chdir: "{{lept_dir}}"
 
+- name: "Remove working directory."
+  file: path={{lept_dir}} state=absent
+
+- name: "Remove source {{lept_tar}}."
+  file: path="{{work_dir}}/{{lept_tar}}" state=absent
+
 - template: src="../templates/{{lept_sem}}" dest={{semaphores_dir}} owner=ansible group=ansible mode=0644
