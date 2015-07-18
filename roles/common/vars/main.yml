@@ -1,0 +1,4 @@
+---
+
+semaphores_dir: /home/ansible/semaphores
+semaphores_header: "## This semaphore is managed by Ansible - do not edit! ##"

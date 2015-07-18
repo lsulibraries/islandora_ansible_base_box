@@ -1,0 +1,10 @@
+---
+- include: apache.yml
+
+- stat: path="{{semaphores_dir}}/{{lept_sem}}"
+  register: lept_installed
+
+- include: leptonica.yml
+  when: lept_installed.stat.exists == False
+
+- include: tesseract.yml

@@ -1,0 +1,16 @@
+---
+
+work_dir: /opt
+
+tess_ver: 3.02.02
+tess_dir: "{{work_dir}}/tesseract-{{tess_ver}}-{{tess_ver}}"
+tess_url: 
+tess_sha:
+
+lept_ver: 1.71
+lept_dir: "{{work_dir}}/leptonica-{{lept_ver}}"
+lept_tar: "leptonica-{{lept_ver}}.tar.gz"
+lept_src: http://www.leptonica.org/source 
+lept_url: "{{lept_src}}/{{lept_tar}}"
+lept_sha: cc5d736e81496eb25e195f380f553537e0410c3f7151a778b2a546e35c7eb848
+lept_sem: leptonica.j2

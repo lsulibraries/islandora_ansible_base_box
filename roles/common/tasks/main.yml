@@ -1,0 +1,8 @@
+---
+
+- stat: path="{{semaphores_dir}}"
+  register: sem
+
+- name: Ensure semaphores directory exists
+  file: path="{{semaphores_dir}}" state=directory
+  when: sem.stat.exists == False or sem.stat.isdir == False

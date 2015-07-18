@@ -1,0 +1,10 @@
+---
+## Tesseract
+## configure vars in ../vars/main.yml
+
+- name: create tesseract working directory
+  file: path={{tess_dir}} state=directory
+
+#- name: fetch tesseract
+#  get_url: url=https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.02.tar.gz dest=~/tesseract
+  

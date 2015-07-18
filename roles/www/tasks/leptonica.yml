@@ -1,0 +1,30 @@
+---
+## Leptonica
+## configure vars in ../vars/main.yml
+
+- name: ensure working directory exists
+  file: path="{{work_dir}}" state=directory recurse=yes
+
+- name: create leptonica build dir
+  file: path={{lept_dir}} state=directory
+
+- stat: path={{lept_dir}}
+
+- name: fetch leptonica
+  get_url: url="{{lept_url}}" dest="{{work_dir}}" force=no sha256sum="{{lept_sha}}"
+
+- name: un-tar leptonica
+  unarchive: copy=no src="{{work_dir}}/{{lept_tar}}" dest="{{work_dir}}"
+#  when: check_lept_dir.stat.exists == False
+
+- name: configure leptonica
+  shell: ./configure
+  args:
+    chdir: "{{lept_dir}}"
+
+- name: make and install leptonica
+  shell: make && make install
+  args:
+    chdir: "{{lept_dir}}"
+
+- template: src="../templates/{{lept_sem}}" dest={{semaphores_dir}} owner=ansible group=ansible mode=0644

@@ -1,0 +1,5 @@
+---
+- name: ensure apache is at the latest version
+  apt: update_cache=yes pkg=apache2 state=latest
+- name: make sure apache is running
+  service: name=apache2 state=running
