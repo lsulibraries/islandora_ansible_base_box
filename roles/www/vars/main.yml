@@ -1,7 +1,5 @@
 ---
 
-work_dir: /opt
-
 tess_ver: 3.02.02
 tess_dir: "{{work_dir}}/tesseract-{{tess_ver}}-{{tess_ver}}"
 tess_url: 
