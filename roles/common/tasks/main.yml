@@ -6,3 +6,17 @@
 - name: Ensure semaphores directory exists
   file: path="{{semaphores_dir}}" state=directory
   when: sem.stat.exists == False or sem.stat.isdir == False
+
+- name: ensure working directory exists.
+  file: path="{{work_dir}}" state=directory recurse=yes
+
+
+# useful packages
+
+- apt: update_cache=yes cache_valid_time=86400
+- apt: name=git
+- apt: name=curl
+- apt: name=wget
+- apt: name=tree
+- apt: name=htop
+- apt: name=emacs

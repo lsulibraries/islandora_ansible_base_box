@@ -1,0 +1,49 @@
+---
+## adapted from https://github.com/Islandora-Labs/islandora_vagrant/blob/master/scripts/bootstrap.sh
+
+- apt: name=software-properties-common
+
+- apt: name=python-software-properties
+
+- apt_repository: repo=ppa:webupd8team/java
+
+- shell: echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+
+- shell: echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+
+- apt: name=oracle-java8-installer
+
+- shell: update-java-alternatives -s java-8-oracle
+
+- apt: name=oracle-java8-set-default
+
+- shell: readlink -f /usr/bin/java
+  register: java_home
+
+- lineinfile: dest=/etc/environment line="JAVA_HOME={{java_home.stdout}}"
+
+- apt: name=maven
+
+- apt: name=tomcat7
+
+- apt: name=tomcat7-admin
+
+# TODO this prob should not be in production...
+- user: name=tomcat7 append=yes groups=vagrant
+
+- lineinfile: dest="/etc/tomcat7/tomcat-users.xml" line='<user username="islandora" password="islandora" roles="manager-gui"/>' insertbefore="</tomcat-users>" state=present
+
+## We still need this for the rest of the times Tomcat is run in the other build scripts
+#sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /etc/default/tomcat7
+### TODO this regex does not properly match, however, the net effect is ok for now...
+### see https://docs.python.org/2/library/re.html
+
+- lineinfile: dest="/etc/default/tomcat7" regexp="#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk" line="JAVA_HOME=$JAVA_HOME" state=present
+
+
+# TODO cleanup workaround for java8 compatibility
+
+- name: hack /etc/init.d/tomcat7 for java 8 compatibility
+  replace: replace='JDK_DIRS="/usr/lib/jvm/default-java ${OPENJDKS} /usr/lib/jvm/java-6-openjdk /usr/lib/jvm/java-6-sun /usr/lib/jvm/java-7-oracle /usr/lib/jvm/java-8-oracle"' dest="/etc/init.d/tomcat7" regexp="JDK_DIRS=.*"
+  # http://stackoverflow.com/questions/27457398/why-java-home-not-recognized-by-tomcat7-in-ubuntu
+  # TODO

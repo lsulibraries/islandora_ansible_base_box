@@ -1,0 +1,7 @@
+---
+# file: java.yml
+- hosts: java
+  roles:
+    - common
+    - java
+  sudo: yes

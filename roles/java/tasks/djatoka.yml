@@ -1,0 +1,54 @@
+---
+
+- name: Fetching Djatoka source into djatoka_home
+  unarchive: copy=no src="http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz" dest={{work_dir}} creates="{{work_dir}}/adore-djatoka-1.1"
+
+#if [ ! -f "$DOWNLOAD_DIR/adore-djatoka.tar.gz" ]; then
+#  echo "Downloading Adore-Djatoka"
+#  wget -q -O "$DOWNLOAD_DIR/adore-djatoka.tar.gz" "http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz"
+#fi
+
+#cd /tmp
+#cp "$DOWNLOAD_DIR/adore-djatoka.tar.gz" /tmp
+#tar -xzvf adore-djatoka.tar.gz
+#cd adore-djatoka-1.1
+#mv -v ./* "$DJATOKA_HOME"
+
+- name: Make link from djatoka-x-y to djatoka_home
+  file: path={{djatoka_home}} state=link src="{{work_dir}}/adore-djatoka-1.1"
+
+- name: Symlink kdu_compress for Large Image Solution Pack
+  file: path=/usr/bin/kdu_compress src="{{djatoka_home}}/bin/Linux-x86-64/kdu_compress" state=link
+
+# Symlink kdu_compress for Large Image Solution Pack
+#ln -s "$DJATOKA_HOME"/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
+
+- name: Deploy Djatoka
+  file: path=/var/lib/tomcat7/webapps/adore-djatoka.war state=link src="{{djatoka_home}}/dist/adore-djatoka.war" owner=tomcat7 group=tomcat7
+
+# Deploy Djatoka
+#cp -v "$DJATOKA_HOME"/dist/adore-djatoka.war /var/lib/tomcat7/webapps
+#chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/adore-djatoka.war
+
+- name: Libraries
+  template: src=../templates/kdu_libs.conf dest=/etc/ld.so.conf.d/
+
+- name: run ldconfig to update kdu_compress
+  shell: /sbin/ldconfig    # https://groups.yahoo.com/neo/groups/kakadu_jpeg2000/conversations/topics/5487
+
+# Libraries
+#cp "$SHARED_DIR"/configs/kdu_libs.conf /etc/ld.so.conf.d/kdu_libs.conf
+
+- name: Sleep for 60 while Tomcat restart
+  service: name=tomcat7 state=restarted sleep=0
+
+# Sleep for 60 while Tomcat restart
+#echo "Sleeping for 60 while Tomcat stack restarts"
+#service tomcat7 restart
+#sleep 60
+
+- name: Logging
+  template: src=../templates/log4j.properties dest=/var/lib/tomcat7/webapps/adore-djatoka/WEB-INF/classes
+
+# Logging
+#cp "$SHARED_DIR"/configs/log4j.properties /var/lib/tomcat7/webapps/adore-djatoka/WEB-INF/classes

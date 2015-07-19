@@ -14,15 +14,22 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/trusty64"
   
+  config.vm.define :all do |a|
+    a.vm.network "forwarded_port", guest: 80, host: 8088
+    a.vm.network "forwarded_port", guest: 8080, host: 8888
+    a.vm.network "forwarded_port", guest: 3306, host: 3306
+    a.vm.network "private_network", ip: "192.168.33.9"
+  end
+
   config.vm.define :www do |web|
     web.vm.network "forwarded_port", guest: 80, host: 8080
     web.vm.network "private_network", ip: "192.168.33.10"
   end
 
-  config.vm.define :database do |db|
-    db.vm.network "forwarded_port", guest: 3306, host: 3306
-    db.vm.network "private_network", ip: "192.168.33.11"
-  end
+#  config.vm.define :database do |db|
+#    db.vm.network "forwarded_port", guest: 3306, host: 3306
+#    db.vm.network "private_network", ip: "192.168.33.11"
+#  end
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
