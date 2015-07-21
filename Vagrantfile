@@ -31,6 +31,26 @@ Vagrant.configure(2) do |config|
 #    db.vm.network "private_network", ip: "192.168.33.11"
 #  end
 
+  config.vm.define :sanity do |s|
+    s.vm.network "forwarded_port", guest: 3306, host: 3306
+    s.vm.network "forwarded_port", guest: 8080, host: 8888    
+    s.vm.network "private_network", ip: "192.168.33.3"
+  end
+
+  config.vm.define :java do |j|
+    j.vm.network "forwarded_port", guest: 3306, host: 3306
+    j.vm.network "forwarded_port", guest: 8080, host: 8888    
+    j.vm.network "private_network", ip: "192.168.33.2"
+
+    j.vm.provider "virtualbox" do |vb|
+  #   Display the VirtualBox GUI when booting the machine
+  #   vb.gui = true
+  #
+  #   # Customize the amount of memory on the VM:
+      vb.memory = "1024"
+    end
+  end
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.

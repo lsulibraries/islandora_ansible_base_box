@@ -28,13 +28,18 @@
   stat: path="{{work_dir}}/fcrepo-installer-{{fedora_version}}.jar"
   register: fcrepo_jar
 
-- name: Download Fedora
-  get_url: url="http://downloads.sourceforge.net/project/fedora-commons/fedora/{{fedora_version}}/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir}}"
+#- name: Download Fedora from Sourceforge
+#  get_url: url="http://downloads.sourceforge.net/project/fedora-commons/fedora/{{fedora_version}}/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir}}" sha256sum=74af05b980a7e9464cf4e98acc70e8b58f3b4f34106564b2764c66199a9431d2
+#  when: fcrepo_jar.stat.exists == False
+
+- name: Download Fedora from local cache
+  copy: src="../files/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir}}"
   when: fcrepo_jar.stat.exists == False
 
 - name: Setup $FEDORA_HOME env var
   lineinfile: dest=/etc/environment line="FEDORA_HOME={{fedora_home}}" insertafter=EOF
 
+  # TODO move src from ../templates to ../files
 - name: Copy install.properties to host
   template: src=../templates/install.properties dest="{{work_dir}}"
 
@@ -53,7 +58,7 @@
   service: name=tomcat7 state=restarted sleep=45
 
 - name: Begin removing unneeded XACML
-  file: path="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/default/deny-inactive-or-deleted-objects-or-datastreams-if-not-administrator.xml" state=absent
+  file: state=absent path="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/default/deny-inactive-or-deleted-objects-or-datastreams-if-not-administrator.xml"
 
 - name: removing unneeded XACML
   file: state=absent path="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/default/deny-policy-management-if-not-administrator.xml"
@@ -91,10 +96,10 @@
   template: src=../templates/deny-apim-if-not-localhost.xml dest="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/default/"
 
 - name: get Drupal auth filter from github
-  get_url: url="https://github.com/islandora/islandora_drupal_filter/releases/download/v7.1.3/fcrepo-drupalauthfilter-{{fedora_version}}.jar" dest="/var/lib/tomcat7/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-{{fedora_version}}.jar"
+  get_url: url="https://github.com/islandora/islandora_drupal_filter/releases/download/v7.1.3/fcrepo-drupalauthfilter-{{auth_filter_fedora_version}}.jar" dest="/var/lib/tomcat7/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-{{auth_filter_fedora_version}}.jar"
 
 - name: set drupal auth permissions
-  file: path="/var/lib/tomcat7/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-{{fedora_version}}.jar" owner=tomcat7 group=tomcat7
+  file: path="/var/lib/tomcat7/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-{{auth_filter_fedora_version}}.jar" owner=tomcat7 group=tomcat7
 
 - name: copy jaas.conf
   template: src=../templates/jaas.conf dest="{{fedora_home}}/server/config/"
@@ -102,6 +107,8 @@
 - name: copy filter-drupal
   template: src=../templates/filter-drupal.xml dest="{{fedora_home}}/server/config/"
 
+- name: copy logging properties for fedora
+  copy: src=../files/logging.properties dest=/var/lib/tomcat7/webapps/fedora/WEB-INF/classes
 
 - name: Tomcat restart
   service: name=tomcat7 state=restarted 

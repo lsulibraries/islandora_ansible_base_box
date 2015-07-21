@@ -2,3 +2,5 @@
 - include: bootstrap.yml
 - include: djatoka.yml
 - include: fcrepo.yml
+- include: solr.yml
+- include: gsearch.yml

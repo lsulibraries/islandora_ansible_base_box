@@ -1,0 +1,53 @@
+---
+
+## Install gsearch
+
+- name: Dependencies Clone basic-solr-config from DG
+  git: repo=https://github.com/discoverygarden/basic-solr-config.git dest="{{work_dir}}/basic-solr-config" version=4.x
+
+- name: Dependencies Update tomcat path in all islandora xslt
+  shell: sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat7#g' ./*xslt
+  args:
+    chdir: "{{work_dir}}/basic-solr-config/islandora_transforms"
+
+- name: Clone dgi_gsearch_extensions from DG github
+  git: repo=https://github.com/discoverygarden/dgi_gsearch_extensions.git dest="{{work_dir}}/dgi_gsearch_extensions"
+
+  # TODO keep an eye out for a mvn module
+- name: Package dgi_gsearch_extensions with maven (shell)
+  shell: mvn -q package
+  args:
+    chdir: "{{work_dir}}/dgi_gsearch_extensions"
+
+- name: Get more? GSearch
+  git: repo=https://github.com/fcrepo3/gsearch.git dest="{{work_dir}}/gsearch"
+
+- name: Build with ant (shell)
+  shell: ant buildfromsource
+  args:
+    chdir: "{{work_dir}}/gsearch/FedoraGenericSearch"
+
+- name: Assign GSearch war ownership to Tomcat
+  file: path="{{work_dir}}/gsearch/FgsBuild/fromsource/fedoragsearch.war" owner=tomcat7 group=tomcat7 
+
+  # TODO create a $TOMCAT_HOME
+- name: Deploy GSearch to Tomcat
+  file: path=/var/lib/tomcat7/webapps/fedoragsearch.war state=link src="{{work_dir}}/gsearch/FgsBuild/fromsource/fedorasearch.war"
+
+
+- name: Set some flags for the jvm
+  shell: sed -i 's#JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"#JAVA_OPTS="-Djava.awt.headless=true -Xmx1024m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"#g' /etc/default/tomcat7
+
+
+- name: restart tomcat, sleep 75
+  service: name=tomcat7 sleep=75
+
+- name: GSearch configurations
+  unarchive: copy=no src=http://alpha.library.yorku.ca/fgsconfigFinal.zip dest=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal
+
+- name: Deploy dgi_gsearch_extensions
+  file: state=link src="{{work_dir}}/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar" path=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.1-jar-with-dependencies.jar
+
+
+## pick up here 
+# # Solr & GSearch configurations

@@ -1,5 +1,8 @@
 
 djatoka_home: /usr/local/djatoka
 
-fedora_version: 3.8.0
+auth_filter_fedora_version: 3.8.0
+fedora_version: 3.8.1
 fedora_home: /usr/local/fedora
+solr_version: 4.2.0
+solr_home: /usr/local/solr
