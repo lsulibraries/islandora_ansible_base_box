@@ -2,52 +2,103 @@
 
 ## Install gsearch
 
-- name: Dependencies Clone basic-solr-config from DG
-  git: repo=https://github.com/discoverygarden/basic-solr-config.git dest="{{work_dir}}/basic-solr-config" version=4.x
+- name: Get status of basic-solr-config
+  stat: path="{{work_dir}}/basic-solr-config"
+  register: solr_conf_present
 
+- name: Dependencies Clone basic-solr-config from DG
+  git: repo=https://github.com/discoverygarden/basic-solr-config.git dest="{{work_dir}}/basic-solr-config" version=4.x force=yes
+  when: solr_conf_present.stat.exists == False
+
+  # todo - when can we not do this ? use a file
 - name: Dependencies Update tomcat path in all islandora xslt
   shell: sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat7#g' ./*xslt
   args:
     chdir: "{{work_dir}}/basic-solr-config/islandora_transforms"
 
+- name: Get status of dgi-gsearch
+  stat: path="{{work_dir}}/dgi-gsearch_extensions"
+  register: dgi_gsearch_extensions_present
+
 - name: Clone dgi_gsearch_extensions from DG github
-  git: repo=https://github.com/discoverygarden/dgi_gsearch_extensions.git dest="{{work_dir}}/dgi_gsearch_extensions"
+  git: repo=https://github.com/discoverygarden/dgi_gsearch_extensions.git dest="{{work_dir}}/dgi_gsearch_extensions" force=yes
+  when: dgi_gsearch_extensions_present == False
+
+- name: Check if we've already built the gsearch extension jars
+  stat: path="{{work_dir}}/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar"
+  register: gse_jar_present
 
   # TODO keep an eye out for a mvn module
 - name: Package dgi_gsearch_extensions with maven (shell)
   shell: mvn -q package
   args:
     chdir: "{{work_dir}}/dgi_gsearch_extensions"
+  when: gse_jar_present.stat.exists == False
 
-- name: Get more? GSearch
+- name: Get status of gsearch
+  stat: path="{{work_dir}}/gsearch"
+  register: gsearch_present
+
+- name: Clone GSearch
   git: repo=https://github.com/fcrepo3/gsearch.git dest="{{work_dir}}/gsearch"
+  when: gsearch_present == False
+
+- name: Have we already built GSearch ?
+  stat: path="{{work_dir}}/gsearch/FgsBuild/fromsource/fedoragsearch.war"
+  register: ant_gsearch_present
 
 - name: Build with ant (shell)
   shell: ant buildfromsource
   args:
     chdir: "{{work_dir}}/gsearch/FedoraGenericSearch"
+  when: ant_gsearch_present.stat.exists == False
 
-- name: Assign GSearch war ownership to Tomcat
+- name: Ensure GSearch war ownership is Tomcat
   file: path="{{work_dir}}/gsearch/FgsBuild/fromsource/fedoragsearch.war" owner=tomcat7 group=tomcat7 
+
+- name: Is gsearch.war already deployed
+  stat: path=/var/lib/tomcat7/webapps/fedoragsearch.war
+  register: gsearch_war_present
 
   # TODO create a $TOMCAT_HOME
 - name: Deploy GSearch to Tomcat
-  file: path=/var/lib/tomcat7/webapps/fedoragsearch.war state=link src="{{work_dir}}/gsearch/FgsBuild/fromsource/fedorasearch.war"
-
+  file: path=/var/lib/tomcat7/webapps/fedoragsearch.war state=link src="{{work_dir}}/gsearch/FgsBuild/fromsource/fedoragsearch.war"
+  when: gsearch_war_present.stat.exists == False
 
 - name: Set some flags for the jvm
   shell: sed -i 's#JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"#JAVA_OPTS="-Djava.awt.headless=true -Xmx1024m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"#g' /etc/default/tomcat7
 
-
 - name: restart tomcat, sleep 75
-  service: name=tomcat7 sleep=75
+  service: name=tomcat7 sleep=75 state=restarted
+  when: gsearch_war_present.stat.exists == False
 
 - name: GSearch configurations
-  unarchive: copy=no src=http://alpha.library.yorku.ca/fgsconfigFinal.zip dest=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal
+  unarchive: copy=no src=http://alpha.library.yorku.ca/fgsconfigFinal.zip dest=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/
+
+- name: Check if we've already deployed the dgi gsearch extension jar
+  stat: path=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.1-jar-with-dependencies.jar
+  register: gse_war_jar_present
 
 - name: Deploy dgi_gsearch_extensions
   file: state=link src="{{work_dir}}/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar" path=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.1-jar-with-dependencies.jar
+  when: gse_war_jar_present.stat.exists == False
+
+## Solr & GSearch configurations
+   ## todo: since this is adding files to an existing directory, we need to get a little fancier
+- name: Copy DG Solr config to solr conf
+  shell: "cp -v {{work_dir}}/basic-solr-config/conf/* /usr/local/solr/collection1/conf"
+
+- name: Copy GSearch transforms
+  shell: "cp -r {{work_dir}}/basic-solr-config/islandora_transforms/* /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms"
+
+- name: Set ownership to Tomcat
+  command: chown -hR tomcat7:tomcat7 /usr/local/solr /var/lib/tomcat7/webapps/fedoragsearch /var/lib/tomcat7/webapps/fedoragsearch.war 
+
+- name: Restart Tomcat
+  service: name=tomcat7 state=restarted
 
 
-## pick up here 
-# # Solr & GSearch configurations
+
+
+
+  

@@ -1,7 +1,7 @@
 ---
 # file: java.yml
 - hosts: java
+  become: True
   roles:
-    - common
+#    - common
     - java
-  sudo: yes

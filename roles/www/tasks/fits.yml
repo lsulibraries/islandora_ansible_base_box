@@ -1,7 +1,7 @@
 ---
 
 - name: Create fits_home
-  file: path={{fits_home}} owner=vagrant group=vagrant state=directory
+  file: path={{fits_home}} owner={{default_owner}} group={{default_owner}} state=directory
 
 - name: Ensure unzip is installed
   apt: name=unzip
@@ -10,8 +10,8 @@
   unarchive: copy=no src="http://projects.iq.harvard.edu/files/fits/files/fits-{{fits_version}}.zip" dest="{{fits_home}}" creates="{{fits_home}}/fits-{{fits_version}}"
 
 - name: make fits.sh executable
-  file: path="{{fits_home}}/fits-{{fits_version}}/fits.sh" mode=0755 owner=vagrant group=vagrant
+  file: path="{{fits_home}}/fits-{{fits_version}}/fits.sh" mode=0755 owner={{default_owner}} group={{default_owner}}
 
 - name: make fits-env.sh executable
-  file: path="{{fits_home}}/fits-{{fits_version}}/fits-env.sh" mode=0755 owner=vagrant group=vagrant 
+  file: path="{{fits_home}}/fits-{{fits_version}}/fits-env.sh" mode=0755 owner={{default_owner}} group={{default_owner}} 
 

@@ -1,9 +1,9 @@
 ---
 # file: www.yml
 - hosts: www
+  become: true
   roles:
     - common
     - www
-  sudo: yes
   vars:
     http_port: 80

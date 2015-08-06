@@ -1,5 +1,7 @@
 ---
 
+- user: name=ansible createhome=no
+
 - stat: path="{{semaphores_dir}}"
   register: sem
 
@@ -14,9 +16,9 @@
 # useful packages
 
 - apt: update_cache=yes cache_valid_time=86400
-- apt: name=git
-- apt: name=curl
-- apt: name=wget
-- apt: name=tree
-- apt: name=htop
-- apt: name=emacs
+- apt: name=git cache_valid_time=86400
+- apt: name=curl cache_valid_time=86400 
+- apt: name=wget cache_valid_time=86400
+- apt: name=tree cache_valid_time=86400
+- apt: name=htop cache_valid_time=86400 
+- apt: name=emacs cache_valid_time=86400

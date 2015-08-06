@@ -1,0 +1,22 @@
+---
+
+- name: Install Drupal package deps
+  apt: name={{item}} 
+  with_items:
+    - php5-gd
+    - php5-dev 
+    - php5.xsl
+    - php-soap
+    - php5-curl
+    - php5-imagick
+    - imagemagick
+    - lame
+    - libimage-exiftool-perl
+    - bibutils 
+    - poppler-utils
+
+- name: pecl install uploadprogress
+  pear: name=uploadprogress
+  
+- name: add uploadprogress.so to php.ini
+  lineinfile: 

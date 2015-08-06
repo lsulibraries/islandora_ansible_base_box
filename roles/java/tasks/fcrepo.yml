@@ -28,13 +28,13 @@
   stat: path="{{work_dir}}/fcrepo-installer-{{fedora_version}}.jar"
   register: fcrepo_jar
 
-#- name: Download Fedora from Sourceforge
-#  get_url: url="http://downloads.sourceforge.net/project/fedora-commons/fedora/{{fedora_version}}/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir}}" sha256sum=74af05b980a7e9464cf4e98acc70e8b58f3b4f34106564b2764c66199a9431d2
-#  when: fcrepo_jar.stat.exists == False
-
-- name: Download Fedora from local cache
-  copy: src="../files/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir}}"
+- name: Download Fedora from github releases
+  get_url: url="https://github.com/fcrepo3/fcrepo/releases/download/v{{fedora_version}}/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir}}" sha256sum=f0fcde6cfd2ff8080a88f8c472fdf107df9a56ce2cbbd78d2e3c4db7480a4bdf
   when: fcrepo_jar.stat.exists == False
+
+#- name: Download Fedora from local cache
+#  copy: src="../files/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir#}}"
+#  when: fcrepo_jar.stat.exists == False
 
 - name: Setup $FEDORA_HOME env var
   lineinfile: dest=/etc/environment line="FEDORA_HOME={{fedora_home}}" insertafter=EOF
@@ -48,8 +48,8 @@
   args:
     creates: /var/lib/tomcat7/webapps/fedora.war
 
-- name: Update fcrepo.war ownership
-  file: path=/var/lib/tomcat7/webapps/fedora.war owner=tomcat7 group=tomcat7
+- name: Update fcrepo.war ownership file:
+  path=/var/lib/tomcat7/webapps/fedora.war owner=tomcat7 group=tomcat7
 
 - name: Update $FEDORA_HOME ownership
   file: path="{{fedora_home}}" owner=tomcat7 group=tomcat7 follow=yes recurse=yes

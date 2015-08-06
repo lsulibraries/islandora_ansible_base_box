@@ -1,9 +1,12 @@
 ---
 
+default_owner: ansible
+
 ffmpeg_version: 1.1.4
 
 fits_home: "/usr/local/fits"
 fits_version: 0.8.5
+fits_owner: 
 
 solr_home: "/usr/local/solr"
 solr_version: 4.2.0

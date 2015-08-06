@@ -14,7 +14,7 @@
 - apt: name=tomcat7-admin
 
 # TODO this prob should not be in production...
-- user: name=tomcat7 append=yes groups=vagrant
+- user: name=tomcat7 append=yes groups={{default_owner}}
 
 - lineinfile: dest="/etc/tomcat7/tomcat-users.xml" line='<user username="islandora" password="islandora" roles="manager-gui"/>' insertbefore="</tomcat-users>" state=present
 
