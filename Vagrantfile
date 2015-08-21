@@ -29,15 +29,6 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  config.vm.define :www do |web|
-    web.vm.network "forwarded_port", guest: 80, host: 8080
-    web.vm.network "private_network", ip: "192.168.33.10"
-  end
-
-#  config.vm.define :database do |db|
-#    db.vm.network "forwarded_port", guest: 3306, host: 3306
-#    db.vm.network "private_network", ip: "192.168.33.11"
-#  end
 
   config.vm.define :java do |j|
     j.vm.network "forwarded_port", guest: 3306, host: 3306
@@ -61,11 +52,11 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-#  config.vm.network "forwarded_port", guest: 80, host: 8080
+  # config.vm.network "forwarded_port", guest: 3306, host: 3366
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-#   config.vm.network "private_network", ip: "192.168.33.10"
+  # config.vm.network "private_network", ip: "192.168.33.51"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -82,13 +73,13 @@ Vagrant.configure(2) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+    vb.memory = "2048"
+  end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -103,6 +94,15 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   sudo apt-get update
+  #   sudo apt-get install -y apache2
+  # SHELL
+#  config.vm.provision "ansible" do |ansible|
+#    ansible.playbook = "site.yml"
+#    ansible.verbose = "vvv"
+#  end
+
 config.vm.provision "shell", inline: <<-SHELL
   useradd -m -s /bin/bash ansible
   mkdir /home/ansible/.ssh
