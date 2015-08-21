@@ -13,7 +13,8 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/trusty64"
-  
+
+  # Monolithic box
   config.vm.define :all do |a|
     a.vm.network "forwarded_port", guest: 80, host: 8088
     a.vm.network "forwarded_port", guest: 8080, host: 8888
@@ -21,27 +22,24 @@ Vagrant.configure(2) do |config|
     a.vm.network "private_network", ip: "192.168.33.9"
     
     a.vm.provider "virtualbox" do |vb|
-  #   Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
       vb.memory = "2048"
     end
   end
 
+  config.vm.define :www do |w|
+    w.vm.network "forwarded_port", guest: 80, host: 8080
+    w.vm.network "private_network", ip: "192.168.33.52"
+  end
+
+  config.vm.define :db do |d|
+    d.vm.network "forwarded_port", guest: 3306, host: 3366
+    d.vm.network "private_network", ip: "192.168.33.51"
+  end
 
   config.vm.define :java do |j|
-    j.vm.network "forwarded_port", guest: 3306, host: 3306
-    j.vm.network "forwarded_port", guest: 8080, host: 8888    
+#    j.vm.network "forwarded_port", guest: 3306, host: 3366
+    j.vm.network "forwarded_port", guest: 8080, host: 8808
     j.vm.network "private_network", ip: "192.168.33.2"
-
-    j.vm.provider "virtualbox" do |vb|
-  #   Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-      vb.memory = "1024"
-    end
   end
 
   # Disable automatic box update checking. If you disable this, then
@@ -110,4 +108,5 @@ config.vm.provision "shell", inline: <<-SHELL
   echo "ansible ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/ansible
   chmod 0550 /etc/sudoers.d/ansible
   SHELL
+
 end
