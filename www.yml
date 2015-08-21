@@ -1,9 +1,12 @@
 ---
 # file: www.yml
 - hosts: www
-  become: true
+  vars_files: 
+    - vars/www.yml
   roles:
-    - common
-    - www
-  vars:
-    http_port: 80
+    - geerlingguy.git
+    - apache
+    - geerlingguy.php
+    - geerlingguy.composer
+    - drush
+    - drupal
