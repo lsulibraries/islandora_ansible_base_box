@@ -31,12 +31,6 @@ Vagrant.configure(2) do |config|
 #    db.vm.network "private_network", ip: "192.168.33.11"
 #  end
 
-  config.vm.define :sanity do |s|
-    s.vm.network "forwarded_port", guest: 3306, host: 3306
-    s.vm.network "forwarded_port", guest: 8080, host: 8888    
-    s.vm.network "private_network", ip: "192.168.33.3"
-  end
-
   config.vm.define :java do |j|
     j.vm.network "forwarded_port", guest: 3306, host: 3306
     j.vm.network "forwarded_port", guest: 8080, host: 8888    
