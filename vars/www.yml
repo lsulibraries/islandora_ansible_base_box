@@ -1,0 +1,17 @@
+---
+
+# Settings for building a Drupal site from a makefile (if 'build_from_makefile'
+# is 'true').
+drupal_major_version: 7
+drupal_core_path: "/var/www/drupal"
+drupal_domain: "drupalvm.dev"
+drupal_site_name: "Drupal"
+drupal_install_profile: standard
+drupal_enable_modules: [ 'devel' ]
+drupal_account_name: admin
+drupal_account_pass: admin
+
+# todo - move these up for use by mysql role.
+drupal_mysql_user: drupal
+drupal_mysql_password: drupal
+drupal_mysql_database: drupal
