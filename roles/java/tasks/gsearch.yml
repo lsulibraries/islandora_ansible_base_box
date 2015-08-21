@@ -22,9 +22,9 @@
 
 - name: Clone dgi_gsearch_extensions from DG github
   git: repo=https://github.com/discoverygarden/dgi_gsearch_extensions.git dest="{{work_dir}}/dgi_gsearch_extensions" force=yes
-  when: dgi_gsearch_extensions_present == False
+  when: dgi_gsearch_extensions_present.stat.exists == False
 
-- name: Check if we've already built the gsearch extension jars
+- name: "Check if we've already built the gsearch extension jars"
   stat: path="{{work_dir}}/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar"
   register: gse_jar_present
 
@@ -41,7 +41,7 @@
 
 - name: Clone GSearch
   git: repo=https://github.com/fcrepo3/gsearch.git dest="{{work_dir}}/gsearch"
-  when: gsearch_present == False
+  when: gsearch_present.stat.exists == False
 
 - name: Have we already built GSearch ?
   stat: path="{{work_dir}}/gsearch/FgsBuild/fromsource/fedoragsearch.war"
