@@ -48,8 +48,8 @@
   args:
     creates: /var/lib/tomcat7/webapps/fedora.war
 
-- name: Update fcrepo.war ownership file:
-  path=/var/lib/tomcat7/webapps/fedora.war owner=tomcat7 group=tomcat7
+- name: Update fcrepo war ownership 
+  file: path=/var/lib/tomcat7/webapps/fedora.war owner=tomcat7 group=tomcat7
 
 - name: Update $FEDORA_HOME ownership
   file: path="{{fedora_home}}" owner=tomcat7 group=tomcat7 follow=yes recurse=yes
