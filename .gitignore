@@ -2,3 +2,4 @@
 reset.sh
 .vagrant/*
 production
+*.jar
