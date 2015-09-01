@@ -39,7 +39,7 @@ Vagrant.configure(2) do |config|
   config.vm.define :java do |j|
 #    j.vm.network "forwarded_port", guest: 3306, host: 3366
     j.vm.network "forwarded_port", guest: 8080, host: 8808
-    j.vm.network "private_network", ip: "192.168.33.2"
+    j.vm.network "private_network", ip: "192.168.33.53"
   end
 
   # Disable automatic box update checking. If you disable this, then

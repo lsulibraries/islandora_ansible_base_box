@@ -1,0 +1,7 @@
+---
+- name: Install islandora server side utilities
+  apt: 
+    name: "{{item}}"
+  with_items:
+    - imagemagick
+    - openjdk-7-jre

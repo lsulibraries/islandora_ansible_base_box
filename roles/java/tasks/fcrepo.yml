@@ -3,34 +3,11 @@
 - name: Get mysql python lib
   apt: name=python-mysqldb
 
-- name: setup root login for db install
-  debconf: name=mysql-server question="mysql-server/root_password" value=islandora vtype=password
-
-- name: setup root login for db install
-  debconf: name=mysql-server question="mysql-server/root_password_again" value=islandora vtype=password
-
-- name: Install database server
-  apt:  name=mysql-server
-
-- name: Install db-client
-  apt:  name=mysql-client
-
-- name: Create fedora3 database
-  mysql_db: name=fedora3 encoding=utf8 login_user=root login_password=islandora
-
-- name: Create fedora db user
-  mysql_user: name=fedoraAdmin password=fedoraAdmin priv=fedora3.*:ALL login_user=root login_password=islandora
-
 - name: Setup $FEDORA_HOME
   file: state=directory path="{{fedora_home}}" owner=tomcat7 group=tomcat7 mode=0755
 
-- name: check if installer is already present
-  stat: path="{{work_dir}}/fcrepo-installer-{{fedora_version}}.jar"
-  register: fcrepo_jar
-
 - name: Download Fedora from github releases
-  get_url: url="https://github.com/fcrepo3/fcrepo/releases/download/v{{fedora_version}}/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir}}" sha256sum=f0fcde6cfd2ff8080a88f8c472fdf107df9a56ce2cbbd78d2e3c4db7480a4bdf
-  when: fcrepo_jar.stat.exists == False
+  copy: src="files/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir}}"
 
 #- name: Download Fedora from local cache
 #  copy: src="../files/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir#}}"
@@ -51,7 +28,7 @@
 - name: Update fcrepo war ownership 
   file: path=/var/lib/tomcat7/webapps/fedora.war owner=tomcat7 group=tomcat7
 
-- name: Update $FEDORA_HOME ownership
+- name: Ensure $FEDORA_HOME ownership
   file: path="{{fedora_home}}" owner=tomcat7 group=tomcat7 follow=yes recurse=yes
 
 - name: Sleep for 45 while Tomcat restart

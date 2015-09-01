@@ -2,7 +2,7 @@
 djatoka_home: /usr/local/djatoka
 
 auth_filter_fedora_version: 3.8.0
-fedora_version: 3.8.1
+#fedora_version: 3.8.1 # moved to global for host-side caching
 fedora_home: /usr/local/fedora
-solr_version: 4.2.0
+#solr_version: 4.2.0 # moved to global
 solr_home: /usr/local/solr

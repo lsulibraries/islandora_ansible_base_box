@@ -3,11 +3,13 @@
 - hosts: www
   vars_files: 
     - vars/www.yml
+    - vars/main.yml
   roles:
-    - common
-    - geerlingguy.git
-    - apache
-    - geerlingguy.php
-    - geerlingguy.composer
+#    - common
+#    - geerlingguy.git
+#    - apache
+#    - geerlingguy.php
+#    - geerlingguy.composer
     - drush
     - drupal
+    - islandora

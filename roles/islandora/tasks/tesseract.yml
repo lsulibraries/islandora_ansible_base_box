@@ -1,0 +1,48 @@
+---
+## Tesseract
+## configure vars in ../vars/main.yml
+
+- name: get tesseract
+  apt: pkg=tesseract-ocr
+
+- name: Get english language files
+  apt: pkg=tesseract-ocr-eng
+
+- name: Get French language files
+  apt: pkg=tesseract-ocr-fra
+
+#- name: create tesseract working directory
+#  file: path={{tess_dir}} state=directory
+
+#- stat: path="{{work_dir}}/{{tess_tar}}"
+#  register: tess_download
+
+#- name: Fetch tesseract source.
+#  get_url: url="{{tess_url}}" dest="{{work_dir}}" force=no #sha256sum="{{tess_sha}}"
+#  when: tess_download.stat.exists == False
+
+#- name: un-tar source
+#  unarchive: copy=no src="{{work_dir}}/{{tess_tar}}" dest="{{work_dir}}"
+
+#- name: Prepare configuration.
+#  shell: ./autogen.sh
+#  args:
+#    chdir: "{{tess_dir}}"
+
+#- name: configure Tesseract.
+#  shell: ./configure
+#  args:
+#    chdir: "{{tess_dir}}"
+
+#- name: make and install Tesseract.
+#  shell: make && make install
+#  args:
+#    chdir: "{{tess_dir}}"
+
+#- name: "Remove working directory."
+#  file: path={{tess_dir}} state=absent
+
+#- name: "Remove source {{tess_tar}}."
+#  file: path="{{work_dir}}/{{tess_tar}}" state=absent
+
+#- template: src="../templates/{{tess_sem}}" dest={{semaphores_dir}} owner=ansible group=ansible mode=0644  

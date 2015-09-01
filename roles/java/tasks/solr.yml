@@ -1,29 +1,23 @@
 ---
 
-- name: Check if Solr sources have been downloaded already
-  stat: path="{{work_dir}}/solr-{{solr_version}}"
-  register: solr
+#- name: Check if Solr sources have been downloaded already
+#  stat: path="{{work_dir}}/solr-{{solr_version}}"
+#  register: solr
+
 
 - name: Get Solr
-  unarchive: copy=no dest="{{work_dir}}" src="http://archive.apache.org/dist/lucene/solr/{{solr_version}}/solr-{{solr_version}}.tgz"
-  when: not solr.stat.exists
+  copy: dest=/usr/local/ src="files/solr-{{solr_version}}/example/solr" owner=tomcat7 group=tomcat7
 
-- name: set ownership of solr files
-  file: owner=tomcat7 group=tomcat7 path="{{work_dir}}/solr-{{solr_version}}"
+- name: copy solr.war into tomcat
+  copy: dest="/var/lib/tomcat7/webapps/solr.war" src="files/solr-{{solr_version}}/dist/solr-{{solr_version}}.war" owner=tomcat7 group=tomcat7
 
-#- name: copy source to solr home
-#  shell: "cp -r {{work_dir}}/solr-{{solr_version}}/* {{solr_home}}"
-
-############# TODO - ensure tomcat7 has ownership !!!!!
-
-- name: put example/solr in solr_home
-  file: state=link src="{{work_dir}}/solr-{{solr_version}}/example/solr" path="{{solr_home}}" owner=tomcat7 group=tomcat7
-
-- name: link solr.war into tomcat
-  file: state=link src="{{work_dir}}/solr-{{solr_version}}/dist/solr-{{solr_version}}.war" path="/var/lib/tomcat7/webapps/solr.war" owner=tomcat7 group=tomcat7
-
-- name: link solr lib to tomcat
-  file: state=link src="{{solr_home}}" path=/var/lib/tomcat7/solr force=yes owner=tomcat7 group=tomcat7
+- name: link solr to tomcat
+  file: 
+    src: "{{solr_home}}" 
+    dest: /var/lib/tomcat7/
+    state: link
+    owner: tomcat7
+    group: tomcat7
 
 - name: Restart tomcat
   service: name=tomcat7 state=restarted

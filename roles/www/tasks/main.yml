@@ -23,4 +23,9 @@
 - include: ffmpeg.yml
   when: ffmpeg_installed.stat.exists == False
 
-
+- name: install required packages
+  apt: 
+    name: "{{item}}"
+    with_items:
+      - zip
+      - unzip
