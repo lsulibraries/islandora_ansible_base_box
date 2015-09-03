@@ -63,7 +63,7 @@
   # TODO create a $TOMCAT_HOME
 - name: Deploy GSearch to Tomcat
   file: path=/var/lib/tomcat7/webapps/fedoragsearch.war state=link src="{{work_dir}}/gsearch/FgsBuild/fromsource/fedoragsearch.war"
-  when: gsearch_war_present.stat.exists == False
+#  when: gsearch_war_present.stat.exists == False
 
 - name: Set some flags for the jvm
   shell: sed -i 's#JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"#JAVA_OPTS="-Djava.awt.headless=true -Xmx1024m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"#g' /etc/default/tomcat7
@@ -72,16 +72,31 @@
   service: name=tomcat7 sleep=90 state=restarted
   when: gsearch_war_present.stat.exists == False
 
+- name: restart tomcat AGAIN
+  service:
+    name: tomcat7
+    state: restarted
+
 - name: GSearch configurations
   unarchive: copy=no src=http://alpha.library.yorku.ca/fgsconfigFinal.zip dest=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/
 
-- name: "Check if we've already deployed the dgi gsearch extension jar"
-  stat: path=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.1-jar-with-dependencies.jar
-  register: gse_war_jar_present
+#- name: "Check if we've already deployed the dgi gsearch extension jar"
+#  stat: path=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.1-jar-with-dependencies.jar
+#  register: gse_war_jar_present
+
+- name: Ensure Tomcat owns everything in working dir
+  file: 
+    path: "{{work_dir}}/dgi_gsearch_extensions/"
+    state: directory
+    recurse: yes
+    owner: tomcat7
+    group: tomcat7
 
 - name: Deploy dgi_gsearch_extensions
-  file: state=link src="{{work_dir}}/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar" path=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.1-jar-with-dependencies.jar
-  when: gse_war_jar_present.stat.exists == False
+  command: "cp {{work_dir}}/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib/"
+  args:
+    creates: /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib/gsearch_extensions-0.1.1-jar-with-dependencies.jar
+#  when: gse_war_jar_present.stat.exists == False
 
 ## Solr & GSearch configurations
    ## todo: since this is adding files to an existing directory, we need to get a little fancier

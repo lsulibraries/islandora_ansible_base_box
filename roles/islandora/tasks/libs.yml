@@ -70,8 +70,8 @@
     chdir: "{{drupal_core_path}}"
     creates: "{{libraries_dir}}/openseadragon"
 
-- name: Ensure that the islandora_fedora_host var is set correctly before enabling...
-  script: "../files/islandora_base_url.sh {{drupal_core_path}}"
+#- name: Ensure that the islandora_fedora_host var is set correctly before enabling...
+#  script: "../files/islandora_base_url.sh {{drupal_core_path}}"
 
 - name: enable islandora
   shell: "drush -y -u 1 en islandora"

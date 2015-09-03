@@ -14,7 +14,7 @@
 - name: link solr to tomcat
   file: 
     src: "{{solr_home}}" 
-    dest: /var/lib/tomcat7/
+    dest: /var/lib/tomcat7/solr
     state: link
     owner: tomcat7
     group: tomcat7

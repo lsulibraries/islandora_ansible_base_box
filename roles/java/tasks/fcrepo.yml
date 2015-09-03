@@ -69,8 +69,8 @@
 - name: remove unneeded Islandora XACML
   file: state=absent path="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/islandora/permit-upload-to-anonymous-user.xml"
 
-- name: update apim XACML
-  template: src=../templates/deny-apim-if-not-localhost.xml dest="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/default/"
+#- name: update apim XACML
+#  template: src=../templates/deny-apim-if-not-localhost.xml dest="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/default/"
 
 - name: get Drupal auth filter from github
   get_url: url="https://github.com/islandora/islandora_drupal_filter/releases/download/v7.1.3/fcrepo-drupalauthfilter-{{auth_filter_fedora_version}}.jar" dest="/var/lib/tomcat7/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-{{auth_filter_fedora_version}}.jar"
