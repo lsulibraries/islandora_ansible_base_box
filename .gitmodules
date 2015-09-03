@@ -1,0 +1,18 @@
+[submodule "roles/apache"]
+	path = roles/apache
+	url = https://github.com/geerlingguy/ansible-role-apache.git
+[submodule "roles/geerlingguy.php"]
+	path = roles/geerlingguy.php
+	url = https://github.com/geerlingguy/ansible-role-php.git
+[submodule "roles/db"]
+	path = roles/db
+	url = https://github.com/geerlingguy/ansible-role-mysql.git
+[submodule "roles/drush"]
+	path = roles/drush
+	url = https://github.com/geerlingguy/ansible-role-drush.git
+[submodule "roles/geerlingguy.composer"]
+	path = roles/geerlingguy.composer
+	url = https://github.com/geerlingguy/ansible-role-composer.git
+[submodule "roles/geerlingguy.git"]
+	path = roles/geerlingguy.git
+	url = https://github.com/geerlingguy/ansible-role-git.git

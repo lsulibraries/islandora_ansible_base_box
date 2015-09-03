@@ -5,3 +5,48 @@ semaphores_dir: /opt/ansible
 semaphores_header: "## This semaphore is managed by Ansible - do not edit! ##"
 
 default_owner: ansible
+
+## overrides on geerlingguy's apache vars
+documentroot: /var/www/drupal
+apache_remove_default_vhost: true
+
+## override php vars
+php_packages:
+  - php5
+  - libapache2-mod-php5
+  - php5-mcrypt
+  - php5-cli
+  - php5-common
+  - php5-curl
+  - php5-dev
+  - php5-fpm
+  - php5-gd
+  - php-pear
+  - php-apc
+  - php5-mysql
+  - php5-xsl
+  - libpcre3-dev
+  - php5-json
+  - php5-imagick
+  - php5-gd
+
+## override mysql vars 
+mysql_databases:
+  - name: fedora3
+    encoding: latin1
+    collation: latin1_general_ci
+
+  - name: drupal
+    encoding: latin1
+    collation: latin1_general_ci
+
+mysql_users:
+  - name: fedoraAdmin
+    host: 'localhost'
+    password: fedoraAdmin
+    priv: fedora3.*:ALL
+
+  - name: drupal
+    host: 'localhost'
+    password: drupal
+    priv: drupal.*:ALL
