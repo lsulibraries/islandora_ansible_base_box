@@ -159,10 +159,10 @@
     chdir: "{{drupal_core_path}}"
   with_items:
     - "variable_set('islandora_audio_viewers', array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs'))"
-    - "variable_set('islandora_fits_executable_path', {{fits_home}}/fits-{{fits_version}}/fits.sh)"
+    - "variable_set('islandora_fits_executable_path', '{{fits_home}}/fits-{{fits_version}}/fits.sh')"
     - "variable_set('islandora_lame_url', '/usr/bin/lame')"
     - "variable_set('islandora_video_viewers', array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs'))"
-    - "variable_set('islandora_video_ffmpeg_path', '/usr/local/bin/ffmpeg')"
+    - "variable_set('islandora_video_ffmpeg_path', '/usr/bin/ffmpeg')"
     - "variable_set('islandora_book_viewers', array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader'))"
     - "variable_set('islandora_book_page_viewers', array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon'))"
     - "variable_set('islandora_large_image_viewers', array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon'))"
@@ -175,3 +175,5 @@
     - "variable_set('islandora_batch_java', '/usr/bin/java')"
     - "variable_set('image_toolkit', 'imagemagick')"
     - "variable_set('imagemagick_convert', '/usr/bin/convert')"
+    - "variable_set('bibutils_ris2xml_path', '/usr/bin/ris2xml')"
+    - "variable_set('bibutils_endx2xml_path', '/usr/bin/endx2xml')"
