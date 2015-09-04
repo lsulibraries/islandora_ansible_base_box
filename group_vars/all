@@ -7,8 +7,16 @@ semaphores_header: "## This semaphore is managed by Ansible - do not edit! ##"
 default_owner: ansible
 
 ## overrides on geerlingguy's apache vars
-documentroot: /var/www/drupal
+apache_vhosts:
+  # Additional properties: 'serveradmin, serveralias, extra_parameters'.
+  - {servername: "local.dev", documentroot: "/var/www/drupal"}
+
 apache_remove_default_vhost: true
+
+apache_mods_enabled:
+  - rewrite.load
+  - proxy.load
+  - proxy_http.load
 
 ## override php vars
 php_packages:
