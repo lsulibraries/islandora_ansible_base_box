@@ -1,0 +1,8 @@
+---
+
+- name: copy httpd proxy settings into confs dir
+  copy: 
+    src: islandora.conf
+    dest: /etc/apache2/conf-enabled/
+  notify: 
+    - restart apache
