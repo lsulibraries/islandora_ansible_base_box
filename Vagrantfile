@@ -26,21 +26,6 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  config.vm.define :www do |w|
-    w.vm.network "forwarded_port", guest: 80, host: 8080
-    w.vm.network "private_network", ip: "192.168.33.52"
-  end
-
-  config.vm.define :db do |d|
-    d.vm.network "forwarded_port", guest: 3306, host: 3366
-    d.vm.network "private_network", ip: "192.168.33.51"
-  end
-
-  config.vm.define :java do |j|
-#    j.vm.network "forwarded_port", guest: 3306, host: 3366
-    j.vm.network "forwarded_port", guest: 8080, host: 8808
-    j.vm.network "private_network", ip: "192.168.33.53"
-  end
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -96,10 +81,6 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
-#  config.vm.provision "ansible" do |ansible|
-#    ansible.playbook = "site.yml"
-#    ansible.verbose = "vvv"
-#  end
 
 config.vm.provision "shell", inline: <<-SHELL
   useradd -m -s /bin/bash ansible
@@ -108,5 +89,13 @@ config.vm.provision "shell", inline: <<-SHELL
   echo "ansible ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/ansible
   chmod 0550 /etc/sudoers.d/ansible
   SHELL
+
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "site.yml"
+    ansible.extra_vars = { remote_user: "ansible" }
+    ansible.inventory_path = "hosts"
+    ansible.verbose = 'v'
+  end
 
 end
