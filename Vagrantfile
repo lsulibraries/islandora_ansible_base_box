@@ -20,12 +20,15 @@ Vagrant.configure(2) do |config|
     a.vm.network "forwarded_port", guest: 8080, host: 8888
     a.vm.network "forwarded_port", guest: 3306, host: 3306
     a.vm.network "private_network", ip: "192.168.33.9"
-    
+
     a.vm.provider "virtualbox" do |vb|
       vb.memory = "8000"
     end
   end
 
+  config.landrush.enabled = true
+  config.landrush.tld = "dev"
+  config.vm.hostname = "islandora.dev"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

@@ -9,7 +9,7 @@ default_owner: ansible
 ## overrides on geerlingguy's apache vars
 apache_vhosts:
   # Additional properties: 'serveradmin, serveralias, extra_parameters'.
-  - {servername: "local.dev", documentroot: "/var/www/drupal"}
+  - {servername: "islandora.dev", documentroot: "/var/www/drupal", serveralias: {"lsu.islandora.dev", "uno.islandora.dev"}}
 
 apache_remove_default_vhost: true
 
