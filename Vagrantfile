@@ -26,9 +26,6 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  config.landrush.enabled = true
-  config.landrush.tld = "dev"
-  config.vm.hostname = "islandora.dev"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -94,11 +91,21 @@ config.vm.provision "shell", inline: <<-SHELL
   SHELL
 
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "site.yml"
-    ansible.extra_vars = { remote_user: "ansible" }
-    ansible.inventory_path = "hosts"
-    ansible.verbose = 'v'
-  end
+  # Use rbconfig to determine if we're on a windows host or not.
+	require 'rbconfig'
+	is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
+	if is_windows
+	  # Provisioning configuration for shell script.
+	  config.vm.provision "shell" do |sh|
+		sh.path = "JJG-Ansible-Windows/windows.sh"
+		sh.args = "site.yml"
+	  end
+	else
+	  # Provisioning configuration for Ansible (for Mac/Linux hosts).
+	  config.vm.provision "ansible" do |ansible|
+		ansible.playbook = "site.yml"
+		ansible.sudo = true
+	  end
+	end
 
 end

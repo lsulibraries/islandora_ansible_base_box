@@ -1,10 +1,10 @@
 ---
 
-#- include: deps.yml
-#- include: devtools.yml
-#- include: tesseract.yml
-#- include: ffmpeg.yml
-#- include: fits.yml
-#- include: mods.yml
+- include: deps.yml
+- include: devtools.yml
+- include: tesseract.yml
+- include: ffmpeg.yml
+- include: fits.yml
+- include: mods.yml
 - include: libs.yml
-#- include: proxy.yml
+- include: proxy.yml
