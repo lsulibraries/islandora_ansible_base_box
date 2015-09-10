@@ -62,6 +62,12 @@
   # git clone https://github.com/Islandora/islandora-xacml-policies.git islandora
 - name: clone Islandora XACML
   git: repo=https://github.com/Islandora/islandora-xacml-policies.git dest="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/islandora" force=yes
+  
+- name: ensure tomcat7 ownership of the xacml we just cloned
+  file: 
+    path: "{{fedora_home}}/data"
+    state: directory
+    recursive: yes
 
 - name: remove unneeded Islandora XACML
   file: state=absent path="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/islandora/permit-apim-to-anonymous-user.xml"
