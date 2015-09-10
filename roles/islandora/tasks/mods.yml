@@ -44,6 +44,9 @@
     - islandora_xacml_editor
     - islandora_xml_forms
     - islandora_xmlsitemap
+    - islandora_usage_stats
+    - islandora_form_fieldpanel
+    - islandora_altmetrics
     - objective_forms
     - php_lib
     - islandora_populator
@@ -96,6 +99,9 @@
     - islandora_xacml_editor
     - islandora_xml_forms
     - islandora_xmlsitemap
+    - islandora_usage_stats
+    - islandora_form_fieldpanel
+    - islandora_altmetrics
     - objective_forms
     - php_lib
     - islandora_populator

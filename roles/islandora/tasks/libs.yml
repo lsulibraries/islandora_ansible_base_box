@@ -137,6 +137,7 @@
     - islandora_simple_workflow
     - islandora_xacml_api
     - islandora_xacml_editor
+    - xmlsitemap
     - islandora_xmlsitemap
     - colorbox
     - islandora_internet_archive_bookreader
