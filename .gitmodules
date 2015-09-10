@@ -16,6 +16,3 @@
 [submodule "roles/geerlingguy.git"]
 	path = roles/geerlingguy.git
 	url = https://github.com/geerlingguy/ansible-role-git.git
-[submodule "JJG-Ansible-Windows"]
-	path = JJG-Ansible-Windows
-	url = https://github.com/geerlingguy/JJG-Ansible-Windows.git
