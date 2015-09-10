@@ -10,7 +10,7 @@
       register: fcrepo_jar
 
     - name: Download Fedora from github releases
-      get_url: url="https://github.com/fcrepo3/fcrepo/releases/download/v{{fedora_version}}/fcrepo-installer-{{fedora_version}}.jar" dest="files/" sha256sum=f0fcde6cfd2ff8080a88f8c472fdf107df9a56ce2cbbd78d2e3c4db7480a4bdf
+      get_url: url="https://github.com/fcrepo3/fcrepo/releases/download/v{{fedora_version}}/fcrepo-installer-{{fedora_version}}.jar" dest="files/fcrepo-installer-{{fedora_version}}.jar" sha256sum=f0fcde6cfd2ff8080a88f8c472fdf107df9a56ce2cbbd78d2e3c4db7480a4bdf
       when: fcrepo_jar.stat.exists == False
 
     - name: check if djatoka src is present
@@ -26,5 +26,5 @@
       register: solr
 
     - name: Get Solr
-      unarchive: copy=no dest="/home/jpeak5/Documents/Ansible/islandora_ansible/files/" src="http://archive.apache.org/dist/lucene/solr/{{solr_version}}/solr-{{solr_version}}.tgz"
+      unarchive: copy=no dest="files/" src="http://archive.apache.org/dist/lucene/solr/{{solr_version}}/solr-{{solr_version}}.tgz"
       when: solr.stat.exists == False
