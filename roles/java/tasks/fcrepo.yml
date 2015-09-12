@@ -67,7 +67,7 @@
   file: 
     path: "{{fedora_home}}/data"
     state: directory
-    recursive: yes
+    recurse: yes
 
 - name: remove unneeded Islandora XACML
   file: state=absent path="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/islandora/permit-apim-to-anonymous-user.xml"
