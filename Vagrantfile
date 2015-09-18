@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
     a.vm.network "private_network", ip: "192.168.33.9"
 
     a.vm.provider "virtualbox" do |vb|
-      vb.memory = "3000"
+      vb.memory = "5000"
     end
   end
 
@@ -56,13 +56,6 @@ Vagrant.configure(2) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-    vb.memory = "2048"
-  end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
