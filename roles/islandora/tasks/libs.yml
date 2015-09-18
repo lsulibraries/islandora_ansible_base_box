@@ -76,6 +76,7 @@
 - name: Fetch islandora dependency modules
   shell: drush -r {{ drupal_core_path }} dl {{ item }} && drush -r {{ drupal_core_path }} -y en {{ item }}
   with_items:
+    - entity
     - rules
     - date
     - datepicker
