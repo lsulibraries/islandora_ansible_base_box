@@ -1,0 +1,7 @@
+---
+name: Copy custom php values into conf.d
+copy: 
+  src: 25-islandora.ini
+  dest: /etc/php5/apache2/conf.d/25-islandora.ini
+  owner: root
+  group: root
