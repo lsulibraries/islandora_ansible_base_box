@@ -1,0 +1,19 @@
+---
+
+- name: put permissions script into path
+  copy: 
+    src: fix-drupal-permissions.sh
+    dest: /usr/local/bin/drupal-permissions
+    owner: root
+    group: root
+    mode: 0744
+
+- name: configure cron to call permissions script
+  cron:
+    hour: 0
+    minute: 0
+    name: ensure that drupal permissions are correct
+    job: "drupal-permissions {{ drupal_core_path }} root www-data"
+
+- name: run the script once to ensure correct permissions
+  command: "drupal-permissions {{ drupal_core_path }} root www-data"
