@@ -13,7 +13,7 @@
     hour: 0
     minute: 0
     name: ensure that drupal permissions are correct
-    job: "drupal-permissions {{ drupal_core_path }} root www-data"
+    job: "drupal-permissions --drupal_path={{ drupal_core_path }} --drupal_user=root --drupal_group=www-data"
 
 - name: run the script once to ensure correct permissions
-  command: "drupal-permissions {{ drupal_core_path }} root www-data"
+  command: "drupal-permissions --drupal_path={{ drupal_core_path }} --drupal_user=root --drupal_group=www-data"
