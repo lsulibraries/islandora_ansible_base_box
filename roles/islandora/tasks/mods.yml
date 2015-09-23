@@ -105,3 +105,10 @@
     - objective_forms
     - php_lib
     - islandora_populator
+
+- name: get mods display
+  git: 
+    clone: yes 
+    repo: "https://github.com/lsulibraries/islandora_mods_display.git" 
+    dest: "{{modules_dir}}/islandora_mods_display"  
+    update: no

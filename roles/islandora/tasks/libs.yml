@@ -156,6 +156,7 @@
     - islandora_form_fieldpanel
     - islandora_altmetrics
     - islandora_populator
+    - islandora_mods_display
 
 - name: Now that the module is downloaded and enabled, ensure that colorbox lib is downloaded and in place.
   shell: "drush -y -v colorbox-plugin"
@@ -187,3 +188,4 @@
     - "variable_set('imagemagick_convert', '/usr/bin/convert')"
     - "variable_set('bibutils_ris2xml_path', '/usr/bin/ris2xml')"
     - "variable_set('bibutils_endx2xml_path', '/usr/bin/endx2xml')"
+    - "variable_set('islandora_metadata_display', 'islandora')"
