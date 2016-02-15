@@ -6,10 +6,18 @@
 
 
 - name: Get Solr
-  copy: dest=/usr/local/ src="files/solr-{{solr_version}}/example/solr" owner=tomcat7 group=tomcat7
+#  copy: dest=/usr/local/ src="/opt/solr-{{solr_version}}/example/solr/" owner=tomcat7 group=tomcat7 remote_src=yes
+  command: 'cp -r /opt/solr-{{solr_version}}/example/solr /usr/local/'
+
+- name: give ownership to tomcat7
+  file:
+    path: /usr/local/solr
+    state: directory
+    owner: tomcat7
+    group: tomcat7
 
 - name: copy solr.war into tomcat
-  copy: dest="/var/lib/tomcat7/webapps/solr.war" src="files/solr-{{solr_version}}/dist/solr-{{solr_version}}.war" owner=tomcat7 group=tomcat7
+  copy: dest="/var/lib/tomcat7/webapps/solr.war" src="/opt/solr-{{solr_version}}/dist/solr-{{solr_version}}.war" owner=tomcat7 group=tomcat7 remote_src=yes
 
 - name: link solr to tomcat
   file: 

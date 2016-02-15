@@ -1,7 +1,7 @@
 ---
 
 - name: Fetching Djatoka source into djatoka_home
-  unarchive:  src="files/adore-djatoka-1.1.tar.gz" dest={{work_dir}} creates="{{work_dir}}/adore-djatoka-1.1"
+  unarchive:  src="/opt/adore-djatoka-1.1.tar.gz" dest={{work_dir}} creates="{{work_dir}}/adore-djatoka-1.1" copy=no
 
 #if [ ! -f "$DOWNLOAD_DIR/adore-djatoka.tar.gz" ]; then
 #  echo "Downloading Adore-Djatoka"
