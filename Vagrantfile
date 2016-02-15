@@ -96,8 +96,7 @@ config.vm.provision "shell", inline: <<-SHELL
 	else
 	  # Provisioning configuration for Ansible (for Mac/Linux hosts).
 	  config.vm.provision "ansible" do |ansible|
-		ansible.playbook = "site.yml"
-		ansible.sudo = true
+		ansible.playbook = "vagrant.yml"
 	  end
 	end
 
