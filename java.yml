@@ -1,6 +1,6 @@
 ---
 # file: java.yml
-- hosts: java
+- hosts: all
   become: True
   vars_files: 
     - vars/main.yml  

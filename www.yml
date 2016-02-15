@@ -1,6 +1,6 @@
 ---
 # file: www.yml
-- hosts: www
+- hosts: all
   vars_files: 
     - vars/www.yml
     - vars/main.yml
