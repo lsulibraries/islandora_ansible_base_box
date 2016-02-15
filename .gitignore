@@ -3,3 +3,5 @@ reset.sh
 .vagrant/*
 production
 *.jar
+.#*
+.bundle

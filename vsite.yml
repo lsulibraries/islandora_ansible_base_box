@@ -1,5 +1,5 @@
 ---
 #- include: vagrant.yml
 #- include: db.yml
-- include: java.yml
+#- include: java.yml
 - include: www.yml

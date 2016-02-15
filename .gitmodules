@@ -19,3 +19,6 @@
 [submodule "JJG-Ansible-Windows"]
 	path = JJG-Ansible-Windows
 	url = https://github.com/lsulibraries/JJG-Ansible-Windows.git
+[submodule "roles/geerlingguy.drupal"]
+	path = roles/geerlingguy.drupal
+	url = https://github.com/geerlingguy/ansible-role-drupal.git
