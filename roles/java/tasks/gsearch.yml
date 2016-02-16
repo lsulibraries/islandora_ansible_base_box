@@ -75,6 +75,13 @@
     sleep: 60
     state: restarted
 
+- name: Ensure gsearch target dir exists
+  file:
+    path: /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes
+    state: directory
+    owner: tomcat7
+    group: tomcat7
+
 - name: GSearch configurations
   unarchive: copy=no src=http://alpha.library.yorku.ca/fgsconfigFinal.zip dest=/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes
 
