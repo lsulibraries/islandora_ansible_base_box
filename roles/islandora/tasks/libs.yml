@@ -74,7 +74,7 @@
 #  script: "../files/islandora_base_url.sh {{drupal_core_path}}"
 
 - name: Fetch and enable islandora dependency modules
-  shell: "drush dl {{ item }} && drush -y en {{ item }}"
+  shell: "drush dl -n {{ item }} && drush -y en {{ item }}"
   args:
     chdir: "{{ drupal_core_path }}"
   with_items:
