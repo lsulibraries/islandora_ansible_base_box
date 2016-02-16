@@ -3,6 +3,8 @@
   vars_files: 
     - vars/main.yml
   become: true
+  roles: 
+    - common
   tasks:
 
     - name: check if installer is already present

@@ -1,15 +1,6 @@
-[submodule "roles/apache"]
-	path = roles/apache
-	url = https://github.com/geerlingguy/ansible-role-apache.git
 [submodule "roles/geerlingguy.php"]
 	path = roles/geerlingguy.php
 	url = https://github.com/geerlingguy/ansible-role-php.git
-[submodule "roles/db"]
-	path = roles/db
-	url = https://github.com/geerlingguy/ansible-role-mysql.git
-[submodule "roles/drush"]
-	path = roles/drush
-	url = https://github.com/geerlingguy/ansible-role-drush.git
 [submodule "roles/geerlingguy.composer"]
 	path = roles/geerlingguy.composer
 	url = https://github.com/geerlingguy/ansible-role-composer.git
@@ -22,3 +13,15 @@
 [submodule "roles/geerlingguy.drupal"]
 	path = roles/geerlingguy.drupal
 	url = https://github.com/geerlingguy/ansible-role-drupal.git
+[submodule "roles/geerlingguy.drush"]
+	path = roles/geerlingguy.drush
+	url = https://github.com/geerlingguy/ansible-role-drush.git
+[submodule "roles/geerlingguy.apache"]
+	path = roles/geerlingguy.apache
+	url = https://github.com/geerlingguy/ansible-role-apache.git
+[submodule "roles/geerlingguy.mysql"]
+	path = roles/geerlingguy.mysql
+	url = https://github.com/geerlingguy/ansible-role-mysql.git
+[submodule "roles/geerlingguy.php-mysql"]
+	path = roles/geerlingguy.php-mysql
+	url = https://github.com/geerlingguy/ansible-role-php-mysql.git

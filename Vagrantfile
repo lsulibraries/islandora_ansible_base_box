@@ -98,7 +98,7 @@ config.vm.provision "shell", inline: <<-SHELL
 	  config.vm.provision "ansible" do |ansible|
 		ansible.playbook = "vsite.yml"
                 ansible.limit = 'all'
-                ansible.verbose = 'vvv'
+                ansible.verbose = 'vv'
 	  end
 	end
 

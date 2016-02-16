@@ -3,15 +3,9 @@
 - hosts: all
   become: yes
   vars_files: 
-    - vars/www.yml
+    - vars/drupal.yml
     - vars/main.yml
   roles:
-    - common
-    - geerlingguy.git
-    - apache
-    - geerlingguy.php
-    - geerlingguy.composer
-    - drush
-    - drupal
+    - geerlingguy.drupal
     - islandora
     - drupal-cron
