@@ -1,5 +1,4 @@
 ---
-- include: java8.yml
 # - include: tomcat7.yml
 #- include: djatoka.yml
 #- include: fcrepo.yml

@@ -25,3 +25,6 @@
 [submodule "roles/geerlingguy.php-mysql"]
 	path = roles/geerlingguy.php-mysql
 	url = https://github.com/geerlingguy/ansible-role-php-mysql.git
+[submodule "roles/ansible-java8-oracle"]
+	path = roles/ansible-java8-oracle
+	url = https://github.com/malk/ansible-java8-oracle.git

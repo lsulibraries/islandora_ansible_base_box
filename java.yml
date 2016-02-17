@@ -5,6 +5,13 @@
   vars_files: 
     - vars/main.yml  
   roles:
-    - java
+    - ansible-java8-oracle
   environment:
     CATALINA_OPTS: "-Xmx2048m"
+  tasks:
+    - shell: readlink -f /usr/bin/java
+      register: java_home
+
+    - lineinfile: 
+        dest: /etc/environment 
+        line: "JAVA_HOME={{java_home.stdout}}"
