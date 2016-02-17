@@ -39,8 +39,8 @@
 # Libraries
 #cp "$SHARED_DIR"/configs/kdu_libs.conf /etc/ld.so.conf.d/kdu_libs.conf
 
-- name: Sleep for 60 while Tomcat restart
-  service: name=tomcat7 state=restarted sleep=60
+- name: Sleep for 15 while Tomcat restart
+  service: name=tomcat7 state=restarted sleep=15
 
 # Sleep for 60 while Tomcat restart
 #echo "Sleeping for 60 while Tomcat stack restarts"
