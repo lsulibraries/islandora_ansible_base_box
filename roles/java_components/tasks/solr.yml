@@ -1,23 +1,37 @@
 ---
+- name: Copy cached solr to /opt
+  unarchive:
+    src: files/solr.zip
+    dest: /opt/
+    owner: tomcat7
+    group: tomcat7
 
-#- name: Check if Solr sources have been downloaded already
-#  stat: path="{{work_dir}}/solr-{{solr_version}}"
-#  register: solr
-
+- name: Check if Solr sources have been downloaded already
+  stat: path="/opt/solr-{{solr_version}}"
+  register: solr
 
 - name: Get Solr
-#  copy: dest=/usr/local/ src="/opt/solr-{{solr_version}}/example/solr/" owner=tomcat7 group=tomcat7 remote_src=yes
-  command: 'cp -r /opt/solr-{{solr_version}}/example/solr /usr/local/'
+  unarchive:
+    copy: no
+    dest: "/opt/"
+    src: "http://archive.apache.org/dist/lucene/solr/{{solr_version}}/solr-{{solr_version}}.tgz"
+  when: solr.stat.exists == False
 
-- name: give ownership to tomcat7
-  file:
-    path: /usr/local/solr
-    state: directory
+- name: Link Solr
+  file: 
+    dest: /usr/local/solr
+    src: "/opt/solr-{{solr_version}}/example/solr"
+    state: link
     owner: tomcat7
     group: tomcat7
 
 - name: copy solr.war into tomcat
-  copy: dest="/var/lib/tomcat7/webapps/solr.war" src="/opt/solr-{{solr_version}}/dist/solr-{{solr_version}}.war" owner=tomcat7 group=tomcat7 remote_src=yes
+  copy: 
+    dest: "/var/lib/tomcat7/webapps/solr.war"
+    src: "/opt/solr-{{solr_version}}/dist/solr-{{solr_version}}.war"
+    owner: tomcat7
+    group: tomcat7
+    remote_src: yes
 
 - name: link solr to tomcat
   file: 
@@ -28,4 +42,6 @@
     group: tomcat7
 
 - name: Restart tomcat
-  service: name=tomcat7 state=restarted
+  service:
+    name: tomcat7
+    state: restarted
