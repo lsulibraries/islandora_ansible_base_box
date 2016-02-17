@@ -31,3 +31,6 @@
 [submodule "roles/ansible-java8"]
 	path = roles/ansible-java8
 	url = https://github.com/gregwhitaker/ansible-java8.git
+[submodule "roles/ansible-tomcat7"]
+	path = roles/ansible-tomcat7
+	url = https://github.com/gregwhitaker/ansible-tomcat7.git
