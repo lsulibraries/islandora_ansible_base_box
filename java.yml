@@ -5,9 +5,23 @@
   roles:
     - java8
     - ansible-tomcat7
+    - geerlingguy.mysql
     - java_components
   vars:
     tomcat_xmx: 1024m
+    fedora_version: 3.8.1
+    solr_version: 4.2.0
+    fits_version: 0.8.5
+    mysql_databases:
+      - name: fedora3
+        encoding: latin1
+        collation: latin1_general_ci
+    mysql_users:
+      - name: fedoraAdmin
+        host: "%"
+        password: fedoraAdmin
+        priv: "fedora3.*:ALL"
+
   tasks:
     - apt:
         name: tomcat7-admin

@@ -6,7 +6,7 @@
 - name: Setup $FEDORA_HOME
   file: state=directory path="{{fedora_home}}" owner=tomcat7 group=tomcat7 mode=0755
 
-- name: Download Fedora from github releases
+- name: Copy Fedora from local cache
   copy: src="/opt/fcrepo-installer-{{fedora_version}}.jar" dest="{{work_dir}}" remote_src=yes
 
 #- name: Download Fedora from local cache
@@ -31,8 +31,13 @@
 - name: Ensure $FEDORA_HOME ownership
   file: path="{{fedora_home}}" owner=tomcat7 group=tomcat7 follow=yes recurse=yes
 
-- name: Sleep for 45 while Tomcat restart
-  service: name=tomcat7 state=restarted sleep=45
+- name: Tomcat restart
+  service: name=tomcat7 state=restarted
+
+- name: wait for fedora deployment
+  wait_for:
+    path: /var/lib/tomcat7/webapps/fedora/WEB-INF/lib/
+    state: present
 
 - name: Begin removing unneeded XACML
   file: state=absent path="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/default/deny-inactive-or-deleted-objects-or-datastreams-if-not-administrator.xml"
@@ -68,6 +73,8 @@
     path: "{{fedora_home}}/data"
     state: directory
     recurse: yes
+    owner: tomcat7
+    group: tomcat7
 
 - name: remove unneeded Islandora XACML
   file: state=absent path="{{fedora_home}}/data/fedora-xacml-policies/repository-policies/islandora/permit-apim-to-anonymous-user.xml"
@@ -95,11 +102,3 @@
 
 - name: Tomcat restart
   service: name=tomcat7 state=restarted 
-
-
-
-
-# TODO 
-  # set CATALINA_HOME ?
-  # factor out DB directives to own file
-  # replace 60 seconds in djatoka.yml
