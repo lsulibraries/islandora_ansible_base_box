@@ -7,6 +7,11 @@
     - common
   tasks:
 
+    - name: Copy cached fcrepo to remote
+      copy:
+        src: files/fcrepo-installer-3.8.1.jar
+        dest: /opt/fcrepo-installer-3.8.1.jar
+
     - name: check if installer is already present
       stat: path="/opt/fcrepo-installer-{{fedora_version}}.jar"
       register: fcrepo_jar
@@ -14,6 +19,11 @@
     - name: Download Fedora from github releases
       get_url: url="https://github.com/fcrepo3/fcrepo/releases/download/v{{fedora_version}}/fcrepo-installer-{{fedora_version}}.jar" dest="/opt/fcrepo-installer-{{fedora_version}}.jar" sha256sum=f0fcde6cfd2ff8080a88f8c472fdf107df9a56ce2cbbd78d2e3c4db7480a4bdf
       when: fcrepo_jar.stat.exists == False
+
+    - name: Copy cached djatoka
+      copy:
+        src: files/adore-djatoka-1.1.tar.gz
+        dest: /opt/adore-djatoka-1.1.tar.gz
 
     - name: check if djatoka src is present
       stat: path="/opt/adore-djatoka-1.1.tar.gz"
@@ -23,10 +33,6 @@
       get_url: url="http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz" dest=/opt/
       when: djatoka.stat.exists == False
 
-    - name: Check if Solr sources have been downloaded already
-      stat: path="/opt/solr-{{solr_version}}"
-      register: solr
-
-    - name: Get Solr
-      unarchive: copy=no dest="/opt/" src="http://archive.apache.org/dist/lucene/solr/{{solr_version}}/solr-{{solr_version}}.tgz"
-      when: solr.stat.exists == False
+    - name: get zip
+      apt:
+        name: zip
