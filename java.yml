@@ -4,4 +4,4 @@
   become: True
   roles:
     - ansible-java8
-    
+    - ansible-tomcat7
