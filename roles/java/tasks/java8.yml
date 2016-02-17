@@ -15,21 +15,27 @@
 
 - name: debconf accept license
   debconf:
+    name: oracle-java8-installer
     question: shared/accepted-oracle-license-v1-1
     value: true
     vtype: select
 
-- name: debconf accept license
-  debconf:
-    question: shared/accepted-oracle-license-v1-1
-    value: true
-    vtype: seen
+# there seems to be an issue here
+####
+#- name: debconf accept license
+#  debconf:
+#    name: oracle-java8-installer
+#    question: shared/present-oracle-license-v1-1
+#    value: true
+#    vtype: seen
 
-#- shell: echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+- shell: echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
 
-#- shell: echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+- shell: echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
 
-- apt: name=oracle-java8-installer
+- apt: 
+    name: oracle-java8-installer
+#    force: true
 
 - shell: update-java-alternatives -s java-8-oracle
 
