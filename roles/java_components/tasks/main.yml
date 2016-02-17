@@ -3,4 +3,4 @@
 - include: djatoka.yml
 - include: fcrepo.yml
 - include: solr.yml
-#- include: gsearch.yml
+- include: gsearch.yml
