@@ -3,5 +3,8 @@
 - hosts: all
   become: True
   roles:
-    - ansible-java8
+    - java8
     - ansible-tomcat7
+  vars:
+    tomcat_xmx: 1024m
+
