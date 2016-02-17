@@ -8,4 +8,6 @@
     - java_components
   vars:
     tomcat_xmx: 1024m
-
+  tasks:
+    - apt:
+        name: tomcat7-admin

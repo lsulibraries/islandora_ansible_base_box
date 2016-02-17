@@ -1,5 +1,5 @@
 ---
-# - include: tomcat7.yml
+- include: tomcat7-admin.yml
 #- include: djatoka.yml
 #- include: fcrepo.yml
 #- include: solr.yml
