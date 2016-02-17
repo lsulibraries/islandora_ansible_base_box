@@ -5,6 +5,7 @@
   roles:
     - java8
     - ansible-tomcat7
+    - java_components
   vars:
     tomcat_xmx: 1024m
 
