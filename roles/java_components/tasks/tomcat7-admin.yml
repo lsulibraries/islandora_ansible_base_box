@@ -15,6 +15,7 @@
     dest: /usr/local/tomcat/conf/tomcat-users.xml
     owner: tomcat7
     group: tomcat7
+    force: yes
 
 - name: Restart tomcat7
   service:
