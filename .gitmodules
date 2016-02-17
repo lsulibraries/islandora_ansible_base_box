@@ -28,3 +28,6 @@
 [submodule "roles/ansible-java8-oracle"]
 	path = roles/ansible-java8-oracle
 	url = https://github.com/malk/ansible-java8-oracle.git
+[submodule "roles/ansible-java8"]
+	path = roles/ansible-java8
+	url = https://github.com/gregwhitaker/ansible-java8.git

@@ -2,16 +2,6 @@
 # file: java.yml
 - hosts: all
   become: True
-  vars_files: 
-    - vars/main.yml  
   roles:
-    - ansible-java8-oracle
-  environment:
-    CATALINA_OPTS: "-Xmx2048m"
-  tasks:
-    - shell: readlink -f /usr/bin/java
-      register: java_home
-
-    - lineinfile: 
-        dest: /etc/environment 
-        line: "JAVA_HOME={{java_home.stdout}}"
+    - ansible-java8
+    
