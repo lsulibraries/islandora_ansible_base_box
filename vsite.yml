@@ -1,4 +1,4 @@
 ---
-#- include: vagrant.yml
+- include: vagrant.yml
 - include: java.yml
 #- include: www.yml
