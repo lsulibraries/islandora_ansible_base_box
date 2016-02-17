@@ -6,3 +6,5 @@
     - vars/main.yml  
   roles:
     - java
+  environment:
+    CATALINA_OPTS: "-Xmx2048m"

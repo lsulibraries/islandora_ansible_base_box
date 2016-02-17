@@ -1,11 +1,33 @@
 ---
 # http://tecadmin.net/install-oracle-java-8-jdk-8-ubuntu-via-ppa/
 
-- apt_repository: repo=ppa:webupd8team/java
+- name: install prereq for ansible apt_repository and for debconf
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - python-apt
+    - debconf
+    - debconf-utils
 
-- shell: echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+- apt_repository: 
+    repo: ppa:webupd8team/java
+    validate_certs: no
 
-- shell: echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+- name: debconf accept license
+  debconf:
+    question: shared/accepted-oracle-license-v1-1
+    value: true
+    vtype: select
+
+- name: debconf accept license
+  debconf:
+    question: shared/accepted-oracle-license-v1-1
+    value: true
+    vtype: seen
+
+#- shell: echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+
+#- shell: echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
 
 - apt: name=oracle-java8-installer
 
@@ -16,4 +38,6 @@
 - shell: readlink -f /usr/bin/java
   register: java_home
 
-- lineinfile: dest=/etc/environment line="JAVA_HOME={{java_home.stdout}}"
+- lineinfile: 
+    dest: /etc/environment 
+    line: "JAVA_HOME={{java_home.stdout}}"
