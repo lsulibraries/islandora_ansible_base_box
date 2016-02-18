@@ -3,20 +3,6 @@
   apt:
     name: tomcat7-admin
 
-- name: backup  original users conf
-  copy:
-    remote_src: yes
-    src: /usr/local/tomcat/conf/tomcat-users.xml
-    dest: /usr/local/tomcat/conf/tomcat-users.xml.orig
-
-- name: Move local users conf into place
-  copy:
-    src: files/tomcat-users.xml
-    dest: /usr/local/tomcat/conf/tomcat-users.xml
-    owner: tomcat7
-    group: tomcat7
-    force: yes
-
 - name: Restart tomcat7
   service:
     name: tomcat7
