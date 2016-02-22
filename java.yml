@@ -1,6 +1,7 @@
 ---
 # file: java.yml
 - hosts: all
+  become: yes
   roles:
     - java8
     - ansible-tomcat7
