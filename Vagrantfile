@@ -75,6 +75,7 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
 
+# @TODO determine whether this shell provision step is any more required
 config.vm.provision "shell", inline: <<-SHELL
   useradd -m -s /bin/bash ansible
   mkdir /home/ansible/.ssh
@@ -84,14 +85,17 @@ config.vm.provision "shell", inline: <<-SHELL
   SHELL
 
 
-  # Use rbconfig to determine if we're on a windows host or not.
+        # Use rbconfig to determine if we're on a windows host or not.
+        # https://www.vagrantup.com/docs/provisioning/ansible_local.html
+        # and https://github.com/geerlingguy/JJG-Ansible-Windows
 	require 'rbconfig'
 	is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 	if is_windows
 	  # Provisioning configuration for shell script.
-	  config.vm.provision "shell" do |sh|
-		sh.path = "JJG-Ansible-Windows/windows.sh"
-		sh.args = "site.yml"
+	  config.vm.provision "ansible_local" do |ansible|
+            ansible.playbook = 'vsite.yml'
+            ansible.limit = 'all'
+            ansible.verbose = 'vv'
 	  end
 	else
 	  # Provisioning configuration for Ansible (for Mac/Linux hosts).
