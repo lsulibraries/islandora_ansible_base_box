@@ -112,3 +112,11 @@
     repo: "https://github.com/lsulibraries/islandora_mods_display.git" 
     dest: "{{modules_dir}}/islandora_mods_display"  
     update: no
+
+  # in order to 'generate' features in place:
+- name: ensure that sites/all/modules dir is writable by the web server
+  file:
+    state: directory
+    owner: www-data
+    recurse: yes
+    path: "{{modules_dir}}"
