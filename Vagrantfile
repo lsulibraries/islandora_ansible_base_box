@@ -86,16 +86,13 @@ config.vm.provision "shell", inline: <<-SHELL
 
 
         # Use rbconfig to determine if we're on a windows host or not.
-        # https://www.vagrantup.com/docs/provisioning/ansible_local.html
-        # and https://github.com/geerlingguy/JJG-Ansible-Windows
 	require 'rbconfig'
 	is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 	if is_windows
 	  # Provisioning configuration for shell script.
-	  config.vm.provision "ansible_local" do |ansible|
-            ansible.playbook = 'vsite.yml'
-            ansible.limit = 'all'
-            ansible.verbose = 'vv'
+	  config.vm.provision "shell" do |sh|
+		sh.path = "JJG-Ansible-Windows/windows.sh"
+		sh.args = "vsite.yml"
 	  end
 	else
 	  # Provisioning configuration for Ansible (for Mac/Linux hosts).
