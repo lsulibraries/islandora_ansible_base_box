@@ -166,6 +166,19 @@
     chdir: "{{drupal_core_path}}"
     creates: "{{libraries_dir}}/colorbox"
 
+- name: Fetch and enable third_party modules
+  shell: "drush dl -n {{ item }} && drush -y en {{ item }}"
+  args:
+    chdir: "{{ drupal_core_path }}"
+  with_items: "{{ third_party_modules }}"
+
+- name: enable local modules
+  shell: "drush -y en {{ item }}"
+  args:
+    chdir: "{{ drupal_core_path }}"
+  with_items: "{{ local_mods }}"
+
+
 - name: Set variables for Islandora modules
   shell: "drush eval \"{{item}}\""
   args:
