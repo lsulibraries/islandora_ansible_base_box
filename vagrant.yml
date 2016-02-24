@@ -7,10 +7,18 @@
     - common
   tasks:
 
+
+      ## fcrepo
+    - name: Check if fcrepo installer is already available
+      stat: 
+        path: files/fcrepo-installer-3.8.1.jar
+      register: fcrepo_cache
+
     - name: Copy cached fcrepo to remote
       copy:
         src: files/fcrepo-installer-3.8.1.jar
         dest: /opt/fcrepo-installer-3.8.1.jar
+      when: fcrepo_cache.stat.exists == True
 
     - name: check if installer is already present
       stat: path="/opt/fcrepo-installer-{{fedora_version}}.jar"
@@ -20,10 +28,17 @@
       get_url: url="https://github.com/fcrepo3/fcrepo/releases/download/v{{fedora_version}}/fcrepo-installer-{{fedora_version}}.jar" dest="/opt/fcrepo-installer-{{fedora_version}}.jar" sha256sum=f0fcde6cfd2ff8080a88f8c472fdf107df9a56ce2cbbd78d2e3c4db7480a4bdf
       when: fcrepo_jar.stat.exists == False
 
+      # djatoka
+    - name: check for cached djatoka
+      stat: 
+        path: files/adore-djatoka-1.1.tar.gz
+      register: dj_cache
+
     - name: Copy cached djatoka
       copy:
         src: files/adore-djatoka-1.1.tar.gz
         dest: /opt/adore-djatoka-1.1.tar.gz
+      when: dj_cache.stat.exists == True
 
     - name: check if djatoka src is present
       stat: path="/opt/adore-djatoka-1.1.tar.gz"
