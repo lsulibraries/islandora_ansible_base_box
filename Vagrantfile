@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
     a.vm.network "private_network", ip: "192.168.33.9"
 
     a.vm.provider "virtualbox" do |vb|
-      vb.memory = "5000"
+      vb.memory = "2000"
     end
   end
 
@@ -92,7 +92,7 @@ config.vm.provision "shell", inline: <<-SHELL
 	  # Provisioning configuration for shell script.
 	  config.vm.provision "shell" do |sh|
 		sh.path = "JJG-Ansible-Windows/windows.sh"
-		sh.args = "vsite.yml"
+		sh.args = "site.yml"
 	  end
 	else
 	  # Provisioning configuration for Ansible (for Mac/Linux hosts).

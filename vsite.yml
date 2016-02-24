@@ -1,8 +1,0 @@
----
-- hosts: all
-  become: True
-  become_method: sudo
-  become_user: root
-- include: vagrant.yml
-- include: java.yml
-- include: www.yml
