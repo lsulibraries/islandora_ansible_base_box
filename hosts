@@ -1,14 +1,2 @@
 [all]
-default ansible_ssh_host=127.0.0.1
-
-[db]
-127.0.0.1
-
-[www]
-127.0.0.1
-
-[java]
-127.0.0.1
-
-[local]
-127.0.0.1
+default
