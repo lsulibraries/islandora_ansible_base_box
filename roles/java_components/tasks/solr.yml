@@ -1,10 +1,16 @@
 ---
+- name: Check for cached installer
+  stat:
+    path: files/solr.zip
+  register: solr_cached
+
 - name: Copy cached solr to /opt
   unarchive:
     src: files/solr.zip
     dest: /opt/
     owner: tomcat7
     group: tomcat7
+  when: solr_cached.stat.exists == True
 
 - name: Check if Solr sources have been downloaded already
   stat: path="/opt/solr-{{solr_version}}"
