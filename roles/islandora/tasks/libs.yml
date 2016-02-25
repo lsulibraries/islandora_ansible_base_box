@@ -170,13 +170,13 @@
   shell: "drush dl -n {{ item }} && drush -y en {{ item }}"
   args:
     chdir: "{{ drupal_core_path }}"
-  with_items: "{{ third_party_modules }}"
+  with_items: "{{ third_party_mods }}"
 
-- name: enable local modules
-  shell: "drush -y en {{ item }}"
-  args:
-    chdir: "{{ drupal_core_path }}"
-  with_items: "{{ local_mods }}"
+#- name: enable local modules
+#  shell: "drush -y en {{ item }}"
+#  args:
+#    chdir: "{{ drupal_core_path }}"
+#  with_items: "{{ local_mods }}"
 
 
 - name: Set variables for Islandora modules
