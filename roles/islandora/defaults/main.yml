@@ -74,3 +74,7 @@ local_mods:
     - solr_lsu_settings
 
 local_repo: https://github.com/lsulibraries/
+---
+modules_dir: "{{ drupal_core_path }}/sites/all/modules"
+libraries_dir: "{{ drupal_core_path }}/sites/all/libraries"
+drupal_core_path: /var/www/drupal
