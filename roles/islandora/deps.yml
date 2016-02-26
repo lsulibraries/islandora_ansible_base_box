@@ -1,8 +1,0 @@
----
-- name: Install islandora server side utilities
-  apt: 
-    name: "{{item}}"
-  with_items:
-    - lame
-#    - java
-    - poppler-utils
