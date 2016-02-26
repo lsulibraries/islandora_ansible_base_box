@@ -7,5 +7,5 @@
     - vars/main.yml
   roles:
     - geerlingguy.drupal
-    - islandora
-    - drupal-cron
+#    - islandora
+#    - drupal-cron

@@ -16,13 +16,13 @@ Vagrant.configure(2) do |config|
 
   # Monolithic box
   config.vm.define :all do |a|
-    a.vm.network "forwarded_port", guest: 80, host: 8088
-    a.vm.network "forwarded_port", guest: 8080, host: 8888
+    a.vm.network "forwarded_port", guest: 80, host: 8000
+    a.vm.network "forwarded_port", guest: 8080, host: 8080
     a.vm.network "forwarded_port", guest: 3306, host: 3306
     a.vm.network "private_network", ip: "192.168.33.9"
 
     a.vm.provider "virtualbox" do |vb|
-      vb.memory = "2000"
+      vb.memory = "3000"
     end
   end
 
@@ -97,7 +97,7 @@ config.vm.provision "shell", inline: <<-SHELL
 	else
 	  # Provisioning configuration for Ansible (for Mac/Linux hosts).
 	  config.vm.provision "ansible" do |ansible|
-		ansible.playbook = "vsite.yml"
+		ansible.playbook = "site.yml"
                 ansible.limit = 'all'
                 ansible.verbose = 'vv'
 	  end
