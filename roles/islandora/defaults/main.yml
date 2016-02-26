@@ -72,5 +72,5 @@ third_party_mods:
 
 local_mods: 
     - solr_lsu_settings
-
+    - metadata_display_lsu
 local_repo: https://github.com/lsulibraries/
