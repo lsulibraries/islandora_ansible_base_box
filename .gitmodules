@@ -37,3 +37,6 @@
 [submodule "roles/java8"]
 	path = roles/java8
 	url = https://github.com/gregwhitaker/ansible-java8.git
+[submodule "roles/ansible-role-islandora"]
+	path = roles/ansible-role-islandora
+	url = https://github.com/lsulibraries/ansible-role-islandora.git

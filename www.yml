@@ -7,5 +7,7 @@
     - vars/main.yml
   roles:
     - geerlingguy.drupal
-#    - islandora
-#    - drupal-cron
+    - islandora_utils
+    - ansible-role-islandora
+    - ansible-role-islandora-local
+    - drupal-cron
