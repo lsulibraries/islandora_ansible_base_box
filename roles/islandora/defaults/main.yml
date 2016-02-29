@@ -72,7 +72,7 @@ third_party_mods:
 
 local_mods: 
     - solr_lsu_settings
-
+    - metadata_display_lsu
 local_repo: https://github.com/lsulibraries/
 ---
 modules_dir: "{{ drupal_core_path }}/sites/all/modules"
