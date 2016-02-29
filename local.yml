@@ -1,5 +1,8 @@
 ---
-- hosts: local
-  connection: local
+- hosts: all
+  become: true
   roles:
-    ansible-role-islandora-local
+    - ansible-role-islandora-local
+  vars:
+    - drupal_core_path: /var/www/drupal/
+    - modules_dir: "{{ drupal_core_path }}/sites/all/modules"
