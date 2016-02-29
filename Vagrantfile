@@ -12,7 +12,10 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "islandx"
+  config.vm.box_url = 'http://lib-dig003.lsu.edu/vagrant/islandx'
+  config.vm.post_up_message = "Access islandora at localhost:8000
+Access tomcat at localhost:8080"
 
   # Monolithic box
   config.vm.define :all do |a|
@@ -76,13 +79,13 @@ Vagrant.configure(2) do |config|
   # SHELL
 
 # @TODO determine whether this shell provision step is any more required
-config.vm.provision "shell", inline: <<-SHELL
-  useradd -m -s /bin/bash ansible
-  mkdir /home/ansible/.ssh
-  echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCznTv2yTUPunuYdnVd5BnDWijBdiwtIBx3dYaHaPkz1/mMuYEV7itj1O8N2eWoyeFY+mjqI24AIHmtauXV1JCwng0yehwNHjyz4IZs3rSgLVmPkYLjecM/XLVECFrfVAaKMxTFrkgYJOKrUTa1ZJPFYXvqIM/bALwnx9swDC/BkuLtXci/tRg6lbVbbfAj+NJgx902fiUTLnlTRtqzwUX9+GkJW3aVUuFqx/a+R85CHeRLxjGwynyTcDzCOO4AVuC36ZHMkyZLnjaTmXhjfZDBPHaVeMzrRhIwMn69IB9BWJzPGLcw42RZMZPOwLVzGb/waqWbYnclFTjmaWJaeVDZ jpeak5@lib-dig003" > /home/ansible/.ssh/authorized_keys
-  echo "ansible ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/ansible
-  chmod 0550 /etc/sudoers.d/ansible
-  SHELL
+#config.vm.provision "shell", inline: <<-SHELL
+#  useradd -m -s /bin/bash ansible
+#  mkdir /home/ansible/.ssh
+#  echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCznTv2yTUPunuYdnVd5BnDWijBdiwtIBx3dYaHaPkz1/mMuYEV7itj1O8N2eWoyeFY+mjqI24AIHmtauXV1JCwng0yehwNHjyz4IZs3rSgLVmPkYLjecM/XLVECFrfVAaKMxTFrkgYJOKrUTa1ZJPFYXvqIM/bALwnx9swDC/BkuLtXci/tRg6lbVbbfAj+NJgx902fiUTLnlTRtqzwUX9+GkJW3aVUuFqx/a+R85CHeRLxjGwynyTcDzCOO4AVuC36ZHMkyZLnjaTmXhjfZDBPHaVeMzrRhIwMn69IB9BWJzPGLcw42RZMZPOwLVzGb/waqWbYnclFTjmaWJaeVDZ jpeak5@lib-dig003" > /home/ansible/.ssh/authorized_keys
+#  echo "ansible ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/ansible
+#  chmod 0550 /etc/sudoers.d/ansible
+#  SHELL
 
 
         # Use rbconfig to determine if we're on a windows host or not.
@@ -92,12 +95,12 @@ config.vm.provision "shell", inline: <<-SHELL
 	  # Provisioning configuration for shell script.
 	  config.vm.provision "shell" do |sh|
 		sh.path = "JJG-Ansible-Windows/windows.sh"
-		sh.args = "site.yml"
+		sh.args = "local.yml"
 	  end
 	else
 	  # Provisioning configuration for Ansible (for Mac/Linux hosts).
 	  config.vm.provision "ansible" do |ansible|
-		ansible.playbook = "site.yml"
+		ansible.playbook = "local.yml"
                 ansible.limit = 'all'
                 ansible.verbose = 'vv'
 	  end

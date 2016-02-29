@@ -9,5 +9,5 @@
     - geerlingguy.drupal
     - islandora_utils
     - ansible-role-islandora
-    - ansible-role-islandora-local
+#    - ansible-role-islandora-local
     - drupal-cron
