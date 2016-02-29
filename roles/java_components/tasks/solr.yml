@@ -21,6 +21,8 @@
     copy: no
     dest: "/opt/"
     src: "http://archive.apache.org/dist/lucene/solr/{{solr_version}}/solr-{{solr_version}}.tgz"
+    owner: tomcat7
+    group: tomcat7
   when: solr.stat.exists == False
 
 - name: Link Solr
