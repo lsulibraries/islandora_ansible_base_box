@@ -9,7 +9,7 @@ drupal_core_path: "/var/www/drupal"
 drupal_domain: "drupaltest.dev"
 
 # Your Drupal site name.
-drupal_site_name: "Drupal Example"
+drupal_site_name: "LDLandora"
 
 # Your Drupal site admin account credentials.
 drupal_admin_name: admin
