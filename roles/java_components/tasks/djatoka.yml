@@ -39,6 +39,13 @@
 # Libraries
 #cp "$SHARED_DIR"/configs/kdu_libs.conf /etc/ld.so.conf.d/kdu_libs.conf
 
+- name: update JAVA_OPTS
+  lineinfile:
+    regexp: 'JAVA_OPTS="\-Djava\.awt\.headless=true \-XX:MaxPermSize=256M \-Xmx1024m \-XX:\+UseConcMarkSweepGC "'
+#    regexp: '#JAVA_OPTS="-Djava.awt.headless=true -XX:MaxPermSize=256M -Xmx1024m -XX:+UseConcMarkSweepGC "'
+    line: 'JAVA_OPTS="-Djava.awt.headless=true -Xmx1024m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"'
+    dest: /etc/default/tomcat7
+
 - name: Sleep for 15 while Tomcat restart
   service: name=tomcat7 state=restarted sleep=15
 
