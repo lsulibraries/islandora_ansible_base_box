@@ -22,6 +22,7 @@ Access tomcat at localhost:8080"
     a.vm.network "forwarded_port", guest: 80, host: 8000
     a.vm.network "forwarded_port", guest: 8080, host: 8080
     a.vm.network "forwarded_port", guest: 3306, host: 3306
+    a.vm.network "forwarded_port", guest: 8888, host: 8888 # freelib djatoka
     a.vm.network "private_network", ip: "192.168.33.9"
 
     a.vm.provider "virtualbox" do |vb|
