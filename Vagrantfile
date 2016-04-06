@@ -97,12 +97,12 @@ Access tomcat at localhost:8080"
 	  # Provisioning configuration for shell script.
 	  config.vm.provision "shell" do |sh|
 		sh.path = "JJG-Ansible-Windows/windows.sh"
-		sh.args = "local.yml"
+		sh.args = "6-dev.play"
 	  end
 	else
 	  # Provisioning configuration for Ansible (for Mac/Linux hosts).
 	  config.vm.provision "ansible" do |ansible|
-		ansible.playbook = "999-full.play"
+		ansible.playbook = "6-dev.play"
                 ansible.limit = 'all'
                 ansible.verbose = 'vv'
 	  end
