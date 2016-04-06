@@ -27,7 +27,7 @@ Access tomcat at localhost:8080"
     a.vm.network "private_network", ip: "192.168.33.9"
 
     a.vm.provider "virtualbox" do |vb|
-      vb.memory = "8000"
+      vb.memory = "4000"
     end
   end
 
@@ -102,7 +102,7 @@ Access tomcat at localhost:8080"
 	else
 	  # Provisioning configuration for Ansible (for Mac/Linux hosts).
 	  config.vm.provision "ansible" do |ansible|
-		ansible.playbook = "999-full.play"
+		ansible.playbook = "5-custom.play"
                 ansible.limit = 'all'
                 ansible.verbose = 'vv'
 	  end
