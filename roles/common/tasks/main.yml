@@ -1,24 +1,9 @@
 ---
-
-- user: name=ansible createhome=no
-
-- stat: path="{{semaphores_dir}}"
-  register: sem
-
-- name: Ensure semaphores directory exists
-  file: path="{{semaphores_dir}}" state=directory
-  when: sem.stat.exists == False or sem.stat.isdir == False
-
-- name: ensure working directory exists.
-  file: path="{{work_dir}}" state=directory recurse=yes
-
-
 # useful packages
 
-- apt: update_cache=yes cache_valid_time=86400
-- apt: name=git cache_valid_time=86400
-- apt: name=curl cache_valid_time=86400 
-- apt: name=wget cache_valid_time=86400
-- apt: name=tree cache_valid_time=86400
-- apt: name=htop cache_valid_time=86400 
-- apt: name=emacs cache_valid_time=86400
+- apt: 
+    update_cache: yes
+    name: "{{ item }}"
+    cache_valid_time: 86400
+  with_items: "{{ common_packages }}"
+

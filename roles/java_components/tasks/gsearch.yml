@@ -70,9 +70,6 @@
 #  file: path=/var/lib/tomcat7/webapps/fedoragsearch.war state=link src="{{work_dir}}/gsearch/FgsBuild/fromsource/fedoragsearch.war"
   when: gsearch_war_present.stat.exists == False
 
-- name: Set some flags for the jvm
-  shell: sed -i 's#JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"#JAVA_OPTS="-Djava.awt.headless=true -Xmx1024m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"#g' /etc/default/tomcat7
-
 - name: wait for gsearch deployment
   wait_for:
     path: /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes

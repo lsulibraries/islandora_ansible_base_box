@@ -4,7 +4,6 @@
     name: "{{item}}"
   with_items:
     - imagemagick
-#    - openjdk-7-jre # needed on the webserver for islandora_batch ?
     - lame
     - poppler-utils
     - bibutils

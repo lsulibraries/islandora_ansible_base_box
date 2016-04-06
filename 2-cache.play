@@ -3,10 +3,15 @@
   become: yes
   vars_files: 
     - vars/main.yml
-  roles: 
-    - common
   tasks:
 
+    - user: name=ansible createhome=no
+
+    - name: ensure working directory exists.
+      file:
+        path: "{{work_dir}}" 
+        state: directory 
+        recurse: yes
 
       ## fcrepo
     - name: Check if fcrepo installer is already available
@@ -47,7 +52,3 @@
     - name: Fetching Djatoka source into djatoka_home
       get_url: url="http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz" dest=/opt/
       when: djatoka.stat.exists == False
-
-    - name: get zip
-      apt:
-        name: zip

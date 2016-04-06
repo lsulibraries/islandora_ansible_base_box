@@ -1,13 +1,13 @@
 ---
 - name: Check for cached installer
   stat:
-    path: files/solr.zip
+    path: /vagrant/files/solr.zip
   register: solr_cached
 
 - name: Copy cached solr to /opt
   unarchive:
     src: files/solr.zip
-    dest: /opt/
+    dest: "/opt/"
     owner: tomcat7
     group: tomcat7
   when: solr_cached.stat.exists == True
@@ -21,6 +21,7 @@
     copy: no
     dest: "/opt/"
     src: "http://archive.apache.org/dist/lucene/solr/{{solr_version}}/solr-{{solr_version}}.tgz"
+#    src: "http://archive.apache.org/dist/lucene/solr//solr-{{solr_version}}.tgz"
     owner: tomcat7
     group: tomcat7
   when: solr.stat.exists == False

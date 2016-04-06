@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: True
+  become_method: sudo
+  become_user: root
+- include: 1-common.play
+- include: 2-cache.play
+- include: 3-java.play
+- include: 4-drupal.play
+- include: 5-custom.play
+- include: 6-dev.play
