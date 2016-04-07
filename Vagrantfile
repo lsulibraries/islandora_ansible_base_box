@@ -12,9 +12,9 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
- config.vm.box = "lsulibraries-trusty64"
-#  config.vm.box = "islandx"
-  config.vm.box_url = 'http://lib-dig003.lsu.edu/vagrant/lsulibraries-trusty64'
+
+  config.vm.box = "islandx"
+  config.vm.box_url = 'http://lib-dig003.lsu.edu/vagrant/islandx'
   config.vm.post_up_message = "Access islandora at localhost:8000
 Access tomcat at localhost:8080"
 
