@@ -1,3 +1,3 @@
 ---
-- include: hnoc.play
-- include: loyola.play
+- include: subsite.play institutional_namespace=hnoc drupal_site_name="Historic New Orleans Collection" fedora_namespace="{{ institutional_namespace }}"
+- include: subsite.play institutional_namespace=loyola drupal_site_name="Loyola University" fedora_namespace="{{ institutional_namespace }}"

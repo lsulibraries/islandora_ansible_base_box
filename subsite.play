@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - ansible-role-islandora-subsite
+    - ansible-role-islandora
+    - ansible-role-islandora-local
+    - drupal-cron
+  vars:
+    - institutional_namespace: none
+    - fedora_namespace: "{{ institutional_namespace }}"
+    - institutional_fqdn: "{{ institutional_namespace }}.ldl.local"
+    - drupal_core_path: "/var/www/drupal/sites/{{ institutional_fqdn }}"
+    - subdomains_to_enable:
+        - "{{ institutional_fqdn }}"
+    - drupal_site_name: "subsite"
+    - drupal_main_path: /var/www/drupal
+    - drupal_mysql_user: "{{ institutional_namespace }}"
+    - drupal_mysql_password: "{{ institutional_namespace }}pass"
+    - drupal_mysql_database: "{{ institutional_namespace }}"
+    - modules_dir: "{{ drupal_main_path }}/sites/all/modules"
+    - themes_dir: "{{ drupal_main_path  }}/sites/all/themes"
+    - libraries_dir: "{{ drupal_main_path }}/sites/all/libraries"

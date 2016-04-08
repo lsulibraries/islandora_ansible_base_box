@@ -43,3 +43,6 @@
 [submodule "roles/ansible-role-islandora-local"]
 	path = roles/ansible-role-islandora-local
 	url = https://github.com/lsulibraries/ansible-role-islandora-local.git
+[submodule "roles/ansible-role-islandora-subsite"]
+	path = roles/ansible-role-islandora-subsite
+	url = https://github.com/lsulibraries/ansible-role-islandora-subsite.git
