@@ -1,2 +1,6 @@
-[all]
-default
+# append these lines to the hosts file on your local system (often /etc/hosts).
+
+127.0.0.1	ldl.local
+127.0.0.1	red.ldl.local
+127.0.0.1	green.ldl.local
+127.0.0.1	blue.ldl.local
