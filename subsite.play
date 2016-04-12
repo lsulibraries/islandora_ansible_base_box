@@ -5,7 +5,6 @@
     - ansible-role-islandora-subsite
     - ansible-role-islandora
     - ansible-role-islandora-local
-    - drupal-cron
   vars:
     - tld: ldl.local
     - institutional_namespace: none
