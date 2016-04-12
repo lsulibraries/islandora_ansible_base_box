@@ -1,4 +1,4 @@
-# append these lines to the hosts file on your local system (often /etc/hosts).
+# append these lines to the hosts file on your local system (nix /etc/hosts, Windows: c:\WINDOWS\system32\drivers\etc\hosts (requires administrator privs...))
 
 127.0.0.1	ldl.local
 127.0.0.1	red.ldl.local
