@@ -7,9 +7,11 @@
     - ansible-role-islandora-local
     - drupal-cron
   vars:
+    - tld: ldl.local
     - institutional_namespace: none
     - fedora_namespace: "{{ institutional_namespace }}"
-    - institutional_fqdn: "{{ institutional_namespace }}.ldl.local"
+    - collections_file: "{{ institutional_namespace }}.tsv"
+    - institutional_fqdn: "{{ institutional_namespace }}.tld"
     - drupal_core_path: "/var/www/drupal/sites/{{ institutional_fqdn }}"
     - subdomains_to_enable:
         - "{{ institutional_fqdn }}"

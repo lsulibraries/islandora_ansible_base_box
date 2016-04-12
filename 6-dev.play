@@ -1,3 +1,5 @@
 ---
-- include: subsite.play institutional_namespace=hnoc drupal_site_name="Historic New Orleans Collection" fedora_namespace="{{ institutional_namespace }}"
-- include: subsite.play institutional_namespace=loyola drupal_site_name="Loyola University" fedora_namespace="{{ institutional_namespace }}"
+- include: subsite.play institutional_namespace=red drupal_site_name="Red" fedora_namespace="{{ institutional_namespace }}"
+- include: subsite.play institutional_namespace=green drupal_site_name="Green" fedora_namespace="{{ institutional_namespace }}"
+- include: subsite.play institutional_namespace=blue drupal_site_name="Blue" fedora_namespace="{{ institutional_namespace }}"
+
