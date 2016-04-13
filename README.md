@@ -3,7 +3,7 @@
 
 ~~~
 git clone --recursive
-cd islandora_vagrant
+cd islandora_ansible
 vagrant up
 ~~~
 
