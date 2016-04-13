@@ -13,8 +13,9 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
 
-  config.vm.box = "islandx"
-  config.vm.box_url = 'http://lib-dig003.lsu.edu/vagrant/islandx'
+  config.vm.box = "lsulibraries-trusty64"
+#  config.vm.box = "islandx"
+#  config.vm.box_url = 'http://lib-dig003.lsu.edu/vagrant/islandx'
   config.vm.post_up_message = "Access islandora at localhost:8000
 Access tomcat at localhost:8080"
 
@@ -102,7 +103,7 @@ Access tomcat at localhost:8080"
 	else
 	  # Provisioning configuration for Ansible (for Mac/Linux hosts).
 	  config.vm.provision "ansible" do |ansible|
-		ansible.playbook = "6-dev.play"
+		ansible.playbook = "999-full.play"
                 ansible.limit = 'all'
                 ansible.verbose = 'vv'
 	  end
