@@ -5,6 +5,8 @@
   vars_files: 
     - vars/drupal.yml
     - vars/main.yml
+  vars:
+    - cdm_create_collections: false
   roles:
     - geerlingguy.drupal
     - islandora_utils
