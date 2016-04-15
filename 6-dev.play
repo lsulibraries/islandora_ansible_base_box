@@ -4,7 +4,9 @@
 - include: subsite.play institutional_namespace=blue drupal_site_name="Blue" fedora_namespace="{{ institutional_namespace }}"
 
 - name: subsite themes Cloning..
-  shell: git clone https://github.com/lsulibraries/multi_subtheme_dev.git .
+  git: clone=yes repo="https://github.com/lsulibraries/multi_subtheme_dev.git" dest="{{drupal_core_path}}/sites/all/themes" update=yes
+  # shell: git clone https://github.com/lsulibraries/multi_subtheme_dev.git .
+  # shell: cd multi_subtheme_dev; cp -R * ../
   args: 
     chdir: {{drupal_core_path}}/sites/all/themes
 
