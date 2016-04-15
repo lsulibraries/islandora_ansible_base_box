@@ -8,7 +8,7 @@
   # shell: git clone https://github.com/lsulibraries/multi_subtheme_dev.git .
   # shell: cd multi_subtheme_dev; cp -R * ../
   args: 
-    chdir: {{drupal_core_path}}/sites/all/themes
+    chdir: "{{drupal_core_path}}/sites/all/themes"
 
 - name: subsite vsets
   command: 'drush -l red.ldl.local vset theme_default subtheme_red'
