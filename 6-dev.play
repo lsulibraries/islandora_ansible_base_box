@@ -3,21 +3,10 @@
 - include: subsite.play institutional_namespace=green drupal_site_name="Green" fedora_namespace="{{ institutional_namespace }}"
 - include: subsite.play institutional_namespace=blue drupal_site_name="Blue" fedora_namespace="{{ institutional_namespace }}"
 
-- tasks:
-  - name: subsite themes Cloning..
-    git: clone=yes repo="https://github.com/lsulibraries/multi_subtheme_dev.git" dest="{{drupal_core_path}}/sites/all/themes" update=yes
-    # shell: git clone https://github.com/lsulibraries/multi_subtheme_dev.git .
-    # shell: cd multi_subtheme_dev; cp -R * ../
-    args: 
-      chdir: "{{drupal_core_path}}/sites/all/themes"
-  
-  - name: subsite vsets
-    command: 'drush -l red.ldl.local vset theme_default subtheme_red'
-    command: 'drush -l blue.ldl.local vset theme_default subtheme_green'
-    command: 'drush -l blue.ldl.local vset theme_default subtheme_blue'
-    command: 'drush -l red.ldl.local vset islandora_namespace_restriction_enforced 1'
-    command: 'drush -l green.ldl.local vset islandora_namespace_restriction_enforced 1'
-    command: 'drush -l blue.ldl.local vset islandora_namespace_restriction_enforced 1'
-    args:
-      chdir: "{{ drupal_core_path }}"
-    
+- hosts: all
+  become: true
+  vars: 
+   - drupal_theme_path: /var/www/drupal/sites/all/themes
+  tasks:
+    - name: subsite themes Cloning..
+      git: clone=yes repo="https://github.com/lsulibraries/multi_subtheme_dev.git" dest="{{drupal_theme_path}}" update=no

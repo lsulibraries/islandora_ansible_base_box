@@ -1,3 +1,4 @@
+
 ---
 - hosts: all
   become: true
@@ -22,3 +23,16 @@
     - modules_dir: "{{ drupal_main_path }}/sites/all/modules"
     - themes_dir: "{{ drupal_main_path  }}/sites/all/themes"
     - libraries_dir: "{{ drupal_main_path }}/sites/all/libraries"
+  tasks:
+    - name: drush
+      command: 'drush -l {{ institutional_namespace }}.ldl.local vset theme_default subtheme_{{ institutional_namespace }}'
+      args:
+        chdir: "{{ drupal_main_path }}"
+    - name: drush 2
+      command: 'drush -l {{ institutional_namespace }}.ldl.local vset islandora_namespace_restriction_enforced 1'
+      args:
+        chdir: "{{ drupal_main_path }}"
+    - name: drush 3
+      command: 'drush -l {{ institutional_namespace }}.ldl.local vset islandroa_pids_allowed {{ institutional_namespace }}:'
+      args:
+        chdir: "{{ drupal_main_path }}"
