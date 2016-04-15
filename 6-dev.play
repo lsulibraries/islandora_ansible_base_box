@@ -7,6 +7,3 @@
   become: true
   vars: 
    - drupal_theme_path: /var/www/drupal/sites/all/themes
-  tasks:
-    - name: subsite themes Cloning..
-      git: clone=yes repo="https://github.com/lsulibraries/multi_subtheme_dev.git" dest="{{drupal_theme_path}}" update=no
