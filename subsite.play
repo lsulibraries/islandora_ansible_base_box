@@ -23,9 +23,6 @@
     - libraries_dir: "{{ drupal_main_path }}/sites/all/libraries"
   tasks:
 
-    - name: subsite themes Cloning..
-      git: clone=yes repo="https://github.com/lsulibraries/multi_subtheme_dev.git" dest="{{drupal_main_path}}/sites/all/themes/multi_subtheme_dev" update=no
-
     - name: drush
       command: 'drush -l {{ institutional_namespace }}.{{ tld }} en -y subtheme_{{ institutional_namespace }}'
       args:

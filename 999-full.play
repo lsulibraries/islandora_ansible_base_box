@@ -8,4 +8,4 @@
 - include: 3-java.play
 - include: 4-drupal.play
 - include: 5-custom.play
-- include: 6-dev.play
+#- include: 6-dev.play

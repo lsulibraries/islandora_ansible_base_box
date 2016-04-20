@@ -102,7 +102,7 @@ Access tomcat at localhost:8080"
 	else
 	  # Provisioning configuration for Ansible (for Mac/Linux hosts).
 	  config.vm.provision "ansible" do |ansible|
-		ansible.playbook = "6-dev.play"
+		ansible.playbook = "777-local.play"
                 ansible.limit = 'all'
                 ansible.verbose = 'vv'
 	  end

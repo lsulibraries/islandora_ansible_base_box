@@ -1,7 +1,7 @@
 ---
-- include: subsite.play institutional_namespace=red drupal_site_name="Red" fedora_namespace="{{ institutional_namespace }}"
-- include: subsite.play institutional_namespace=green drupal_site_name="Green" fedora_namespace="{{ institutional_namespace }}"
-- include: subsite.play institutional_namespace=blue drupal_site_name="Blue" fedora_namespace="{{ institutional_namespace }}"
+- include: subsite.play institutional_namespace=red drupal_site_name="Red" fedora_namespace="{{ institutional_namespace }}" tld="{{ institutional_namespace }}"
+- include: subsite.play institutional_namespace=green drupal_site_name="Green" fedora_namespace="{{ institutional_namespace }}" tld="{{ institutional_namespace }}"
+- include: subsite.play institutional_namespace=blue drupal_site_name="Blue" fedora_namespace="{{ institutional_namespace }}" tld="{{ institutional_namespace }}"
 
 - hosts: all
   become: true
