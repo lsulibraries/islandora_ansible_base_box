@@ -23,19 +23,23 @@
     - libraries_dir: "{{ drupal_main_path }}/sites/all/libraries"
   tasks:
 
-    - name: drush
+    - name: enable subtheme per subsite
       command: 'drush -l {{ institutional_namespace }}.{{ tld }} en -y subtheme_{{ institutional_namespace }}'
       args:
         chdir: "{{ drupal_main_path }}"
-    - name: drush
+    - name: set theme_default per subsite
       command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset theme_default subtheme_{{ institutional_namespace }}'
       args:
         chdir: "{{ drupal_main_path }}"
-    - name: drush 2
+    - name: restrict namespace per subsite
       command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset islandora_namespace_restriction_enforced 1'
       args:
         chdir: "{{ drupal_main_path }}"
-    - name: drush 3
+    - name: set islandora_pids_allowed per subsite
       command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset islandora_pids_allowed {{ institutional_namespace }}:'
+      args:
+        chdir: "{{ drupal_main_path }}"
+    - name: set djatoka path  per subsite
+      command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset islandora_paged_content_djatoka_url http://{{ institutional_namespace }}.{{ tld }}:8080/adore-djatoka/'
       args:
         chdir: "{{ drupal_main_path }}"
