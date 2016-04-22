@@ -77,3 +77,9 @@ mysql_users:
 
 drupal_core_path: /var/www/drupal
 install_php_devtools: false
+
+
+fedora_version: 3.8.1
+solr_version: 4.2.0
+fits_version: 0.8.5
+ansible_home: /home/ansible

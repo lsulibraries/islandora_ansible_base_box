@@ -1,6 +1,5 @@
 ---
 ## Tesseract
-## configure vars in ../vars/main.yml
 
 - name: get tesseract
   apt: pkg=tesseract-ocr
