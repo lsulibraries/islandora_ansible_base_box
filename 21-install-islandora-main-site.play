@@ -6,6 +6,5 @@
   vars:
     - cdm_create_collections: false
   roles:
-    - islandora_dependencies
     - ansible-role-islandora
     - drupal-cron
