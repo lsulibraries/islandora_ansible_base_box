@@ -1,5 +1,5 @@
 ---
-# file: www.yml
+# file: 4-drupal.play
 - hosts: all
   become: yes
   vars_files: 
@@ -9,6 +9,6 @@
     - cdm_create_collections: false
   roles:
     - geerlingguy.drupal
-    - islandora_utils
-    - ansible-role-islandora
-    - drupal-cron
+#    - islandora_utils
+#    - ansible-role-islandora
+#    - drupal-cron

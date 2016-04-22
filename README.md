@@ -15,7 +15,7 @@ vagrant ssh
 sudo su
 cd /opt/islandora_ansible
 source /opt/ansible/hacking/env-setup
-ansible-playbook 6-dev.play -u vagrant -vv --connection=local -i /vagrant/win.inv
+ansible-playbook 40-dev.play -u vagrant -vv --connection=local -i /vagrant/win.inv
 ~~~
 
 ## Multisite

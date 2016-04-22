@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - ansible-role-islandora-local
+  vars:
+    - drupal_core_path: /var/www/drupal/
+    - modules_dir: "{{ drupal_core_path }}/sites/all/modules"
+    - institutional_fqdn: ldl.lib.lsu.edu
+  tasks:
+    - name: update /etc/hosts
+      lineinfile:
+        dest: /etc/hosts
+        line: "127.0.0.1       {{ institutional_fqdn }}"
+        insertafter: '127\.0\.0\.1\tlocalhost'

@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+  vars_files: 
+    - vars/drupal.yml
+    - vars/main.yml
+  vars:
+    - cdm_create_collections: false
+  roles:
+    - geerlingguy.drupal
+    - islandora_dependencies
+    - ansible-role-islandora
+    - drupal-cron

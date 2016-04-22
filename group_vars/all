@@ -74,3 +74,5 @@ mysql_users:
     host: 'localhost'
     password: drupal
     priv: drupal.*:ALL
+
+drupal_core_path: /var/www/drupal

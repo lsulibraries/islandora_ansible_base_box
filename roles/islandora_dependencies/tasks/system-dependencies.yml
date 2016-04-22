@@ -7,3 +7,7 @@
     - lame
     - poppler-utils
     - bibutils
+
+- include: tesseract.yml
+- include: ffmpeg.yml
+- include: fits.yml
