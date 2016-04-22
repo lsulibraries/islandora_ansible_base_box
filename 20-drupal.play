@@ -3,8 +3,6 @@
   become: yes
   vars_files: 
     - vars/drupal.yml
-  vars:
-    - cdm_create_collections: false
   roles:
     - geerlingguy.drupal
 
