@@ -4,7 +4,6 @@
   roles:
     - ansible-role-islandora-local
   vars:
-    - drupal_core_path: /var/www/drupal/
     - modules_dir: "{{ drupal_core_path }}/sites/all/modules"
     - institutional_fqdn: ldl.lib.lsu.edu
   tasks:

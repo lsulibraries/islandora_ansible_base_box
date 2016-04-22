@@ -3,7 +3,6 @@
 # Settings for building a Drupal site from a makefile (if 'build_from_makefile'
 # is 'true').
 drupal_major_version: 7.x
-drupal_core_path: "/var/www/drupal"
 drupal_domain: "drupalvm.dev"
 drupal_site_name: "Drupal"
 drupal_install_profile: standard

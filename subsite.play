@@ -12,9 +12,9 @@
     - fedora_namespace: "{{ institutional_namespace }}"
     - collections_file: "{{ institutional_namespace }}.tsv"
     - institutional_fqdn: "{{ institutional_namespace }}.{{ tld }}"
-    - drupal_core_path: "/var/www/drupal/sites/{{ institutional_fqdn }}"
+    - drupal_main_path: "{{ drupal_core_path }}"
+    - drupal_core_path: "{{ drupal_core_path }}/sites/{{ institutional_fqdn }}"
     - drupal_site_name: "subsite"
-    - drupal_main_path: /var/www/drupal
     - drupal_mysql_user: "{{ institutional_namespace }}"
     - drupal_mysql_password: "{{ institutional_namespace }}pass"
     - drupal_mysql_database: "{{ institutional_namespace }}"
