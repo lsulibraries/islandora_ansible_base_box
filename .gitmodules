@@ -46,3 +46,6 @@
 [submodule "roles/ansible-role-islandora-subsite"]
 	path = roles/ansible-role-islandora-subsite
 	url = https://github.com/lsulibraries/ansible-role-islandora-subsite.git
+[submodule "roles/ansible-role-islandora-system-dependencies"]
+	path = roles/ansible-role-islandora-system-dependencies
+	url = https://github.com/lsulibraries/ansible-role-islandora-system-dependencies

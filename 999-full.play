@@ -6,7 +6,8 @@
 #- include: 01-common.play
 #- include: 10-cache.play
 #- include: 11-java.play
-- include: 20-drupal.play
+- include: 15-islandora-system-dependencies.play
+#- include: 20-drupal.play
 #- include: 21-install-islandora-main-site.play
 #- include: 22-install-lsu-islandora-modules.play
 #- include: 23-install-islandora-sub-sites.play
