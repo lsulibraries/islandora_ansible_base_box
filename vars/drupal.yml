@@ -3,10 +3,10 @@
 drupal_core_version: "7.x"
 
 # The path where Drupal will be downloaded and installed.
-drupal_core_path: "/var/www/drupal"
+# drupal_core_path: "/var/www/drupal"
 
 # Your drupal site's domain name (e.g. 'example.com').
-drupal_domain: "drupaltest.dev"
+drupal_domain: "ldl.lib.lsu.edu"
 
 # Your Drupal site name.
 drupal_site_name: "LDLandora"
