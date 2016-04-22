@@ -1,4 +1,4 @@
 ---
 - include: system-dependencies.yml
 - include: php-devtools.yml
-  when: "{{ devtools }}"
+  when: "{{ install_php_devtools }}"
