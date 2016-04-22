@@ -12,8 +12,8 @@
     - fedora_namespace: "{{ institutional_namespace }}"
     - collections_file: "{{ institutional_namespace }}.tsv"
     - institutional_fqdn: "{{ institutional_namespace }}.{{ tld }}"
-    - drupal_main_path: "{{ drupal_core_path }}"
-    - drupal_core_path: "{{ drupal_core_path }}/sites/{{ institutional_fqdn }}"
+    - drupal_main_path: "{{ drupal_web_root }}"
+    - drupal_core_path: "{{ drupal_web_root }}/sites/{{ institutional_fqdn }}"
     - drupal_site_name: "subsite"
     - drupal_mysql_user: "{{ institutional_namespace }}"
     - drupal_mysql_password: "{{ institutional_namespace }}pass"
@@ -23,22 +23,26 @@
     - libraries_dir: "{{ drupal_main_path }}/sites/all/libraries"
   tasks:
 
-    - name: enable subtheme per subsite
-      command: 'drush -l {{ institutional_namespace }}.{{ tld }} en -y subtheme_{{ institutional_namespace }}'
-      args:
-        chdir: "{{ drupal_main_path }}"
-    - name: set theme_default per subsite
-      command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset theme_default subtheme_{{ institutional_namespace }}'
-      args:
-        chdir: "{{ drupal_main_path }}"
-    - name: restrict namespace per subsite
-      command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset islandora_namespace_restriction_enforced 1'
-      args:
-        chdir: "{{ drupal_main_path }}"
-    - name: set islandora_pids_allowed per subsite
-      command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset islandora_pids_allowed {{ institutional_namespace }}:'
-      args:
-        chdir: "{{ drupal_main_path }}"
+ #   - name: enable subtheme per subsite
+ #     command: 'drush -l {{ institutional_namespace }}.{{ tld }} en -y subtheme_lsu'
+ #     args:
+ #       chdir: "{{ drupal_main_path }}"
+
+   #- name: set theme_default per subsite
+   #   command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset theme_default subtheme_lsu
+'   #  args:
+   #    chdir: "{{ drupal_main_path }}"
+
+    #- name: restrict namespace per subsite
+    #  command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset islandora_namespace_restriction_enforced 1'
+    #  args:
+    #    chdir: "{{ drupal_main_path }}"
+
+    #- name: set islandora_pids_allowed per subsite
+    #  command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset islandora_pids_allowed {{ institutional_namespace }}:'
+    #  args:
+    #    chdir: "{{ drupal_main_path }}"
+
     - name: set djatoka path  per subsite
       command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset islandora_paged_content_djatoka_url http://{{ institutional_namespace }}.{{ tld }}:8080/adore-djatoka/'
       args:

@@ -76,6 +76,7 @@ mysql_users:
     priv: drupal.*:ALL
 
 drupal_core_path: /var/www/drupal
+drupal_web_root: /var/www/drupal
 install_php_devtools: false
 
 
