@@ -8,3 +8,4 @@ production
 *.retry
 *.box
 /nbproject/private/
+islandora.pem
