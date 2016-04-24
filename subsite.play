@@ -30,7 +30,7 @@
 
    #- name: set theme_default per subsite
    #   command: 'drush -l {{ institutional_namespace }}.{{ tld }} vset theme_default subtheme_lsu
-'   #  args:
+   #  args:
    #    chdir: "{{ drupal_main_path }}"
 
     #- name: restrict namespace per subsite

@@ -1,6 +1,0 @@
----
-# this playbook installs the root drupal instance, islandora modules and our custom features.
-
-- include: 20-drupal.play
-- include: 21-install-islandora-main-site.play
-- include: 22-install-lsu-islandora-modules.play
