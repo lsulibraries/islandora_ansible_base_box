@@ -7,3 +7,7 @@ drupal_domain: "drupaltest.dev"
 
 # Your Drupal site name.
 drupal_site_name: "LSU Islandora"
+
+subsite: true
+
+tld: ldl.lib.lsu.edu

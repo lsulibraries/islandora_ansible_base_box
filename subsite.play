@@ -7,6 +7,7 @@
     - ansible-role-islandora
     - ansible-role-islandora-local
   vars:
+    - subsite: true
     - tld: ldl.local
     - institutional_namespace: none
     - fedora_namespace: "{{ institutional_namespace }}"

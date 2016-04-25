@@ -1,6 +1,8 @@
 ---
 - hosts: all
   become: yes
+  vars:
+    - subsite: false
   vars_files: 
     - vars/drupal.yml
   roles:

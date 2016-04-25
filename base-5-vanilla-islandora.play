@@ -1,0 +1,3 @@
+---
+- include: 20-drupal.play
+- include: 21-install-islandora-main-site.play

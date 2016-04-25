@@ -1,0 +1,5 @@
+---
+- include: 01-common.play
+- include: 10-cache.play
+- include: 11-java.play
+- include: 15-islandora-system-dependencies.play
