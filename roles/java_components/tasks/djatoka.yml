@@ -42,8 +42,9 @@
 - name: update JAVA_OPTS
   lineinfile:
     regexp: 'JAVA_OPTS="\-Djava\.awt\.headless=true \-XX:MaxPermSize=256M \-Xmx1024m \-XX:\+UseConcMarkSweepGC "'
-#    regexp: '#JAVA_OPTS="-Djava.awt.headless=true -XX:MaxPermSize=256M -Xmx1024m -XX:+UseConcMarkSweepGC "'
-    line: 'JAVA_OPTS="-Djava.awt.headless=true -Xmx4g -Xms4g -XX:MaxPermSize=500m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64 -Xloggc:/var/log/islandora/java/java_gc.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:ErrorFile=/var/log/islandora/java/java_error%p.log -XX:+DisableExplicitGC"'
+    line: 'JAVA_OPTS="-Djava.awt.headless=true -Xmx4g -Xms4g -XX:MaxPermSize=500m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.libra\
+ry.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64 -Xloggc:/var/log/islandora/java/java_gc.log -XX:+PrintGCDet\
+ails -XX:+PrintGCTimeStamps -XX:ErrorFile=/var/log/islandora/java/java_error%p.log -XX:+UseParNewGC -XX:+DisableExplicitGC"'
     dest: /etc/default/tomcat7
 
 - name: create islandora dir
