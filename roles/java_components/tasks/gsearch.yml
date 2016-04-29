@@ -7,10 +7,10 @@
   register: solr_conf_present
 
 - name: Dependencies Clone basic-solr-config from DG
-  git: repo=https://github.com/discoverygarden/basic-solr-config.git dest="{{work_dir}}/basic-solr-config" version=4.x 
+  git: repo=https://github.com/lsulibraries/basic-solr-config.git dest="{{work_dir}}/basic-solr-config" version=4.x 
   when: solr_conf_present.stat.exists == False
 
-  # todo - when can we not do this ? use a file
+  # todo - this should be obsolete now. See https://github.com/lsulibraries/basic-solr-config/compare/7c14d02...4.x
 - name: Dependencies Update tomcat path in all islandora xslt
   shell: sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat7#g' ./*xslt
   args:
