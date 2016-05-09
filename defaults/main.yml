@@ -11,3 +11,17 @@ drupal_site_name: "LSU Islandora"
 subsite: true
 
 tld: ldl.lib.lsu.edu
+
+ldl_data_volume_mount_point: /data
+ldl_logs_volume_mount_point: "{{ data_volume_mount_point }}"
+ldl_fedora_volume_mount_point: "{{ data_volume_mount_point }}"
+ldl_drupal_volume_mount_point: "{{ data_volume_mount_point }}"
+
+ldl_data_path: "{{ ldl_data_volume_mount_point }}/mysql"
+ldl_logs_path: "{{ ldl_logs_volume_mount_point }}/logs"
+ldl_fedora_path: "{{ ldl_fedora_volume_mount_point }}/fcrepo"
+ldl_drupal_path: "{{ ldl_drupal_volume_mount_point }}/drupal"
+
+mysql_datadir: "{{ ldl_data_path }}"
+
+ldl_cachedir: /cache

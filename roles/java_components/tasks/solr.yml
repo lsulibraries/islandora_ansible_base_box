@@ -1,35 +1,30 @@
 ---
-- name: Check for cached installer
-  stat:
-    path: /vagrant/files/solr.zip
-  register: solr_cached
-
-- name: Copy cached solr to /opt
-  unarchive:
-    src: files/solr.zip
-    dest: "/opt/"
-    owner: tomcat7
-    group: tomcat7
-  when: solr_cached.stat.exists == True
-
 - name: Check if Solr sources have been downloaded already
-  stat: path="/opt/solr-{{solr_version}}"
+  stat: path="{{ work_dir }}/solr-{{solr_version}}"
   register: solr
 
 - name: Get Solr
   unarchive:
     copy: no
-    dest: "/opt/"
+    dest: "{{ work_dir }}/"
     src: "http://archive.apache.org/dist/lucene/solr/{{solr_version}}/solr-{{solr_version}}.tgz"
 #    src: "http://archive.apache.org/dist/lucene/solr//solr-{{solr_version}}.tgz"
     owner: tomcat7
     group: tomcat7
   when: solr.stat.exists == False
 
+- name: Ensure that tomcat7 owns Solr
+  file:
+    state: directory
+    path:  "{{ work_dir }}/solr-{{solr_version}}"
+    owner: tomcat7
+    group: tomcat7
+    recurse: yes
+
 - name: Link Solr
   file: 
-    dest: /usr/local/solr
-    src: "/opt/solr-{{solr_version}}/example/solr"
+    dest: "{{ solr_home }}"
+    src: "{{ work_dir }}/solr-{{solr_version}}/example/solr"
     state: link
     owner: tomcat7
     group: tomcat7
@@ -37,7 +32,7 @@
 - name: copy solr.war into tomcat
   copy: 
     dest: "/var/lib/tomcat7/webapps/solr.war"
-    src: "/opt/solr-{{solr_version}}/dist/solr-{{solr_version}}.war"
+    src: "{{ work_dir }}/solr-{{solr_version}}/dist/solr-{{solr_version}}.war"
     owner: tomcat7
     group: tomcat7
     remote_src: yes

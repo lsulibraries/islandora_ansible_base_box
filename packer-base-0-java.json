@@ -1,7 +1,7 @@
 {
   "variables": {
-    "aws_access_key": "",
-    "aws_secret_key": ""
+    "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+    "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -11,7 +11,20 @@
     "source_ami": "ami-9abea4fb",
     "instance_type": "t2.large",
     "ssh_username": "ubuntu",
-    "ami_name": "base-0-java {{timestamp}}"
+    "ami_name": "base-0-java {{timestamp}}",
+    "launch_block_device_mappings": [
+    {
+      "device_name": "/dev/sde",
+      "snapshot_id": "snap-197ab544"
+    },
+    {
+      "device_name": "/dev/sdf",
+      "snapshot_id": "snap-412a8d1d"
+    },
+    {
+      "device_name": "/dev/sdr",
+      "snapshot_id": "snap-412a8d1d"
+    }]
   }],
   "provisioners": [
     {

@@ -8,10 +8,12 @@
     - geerlingguy.mysql
     - java_components
   vars:
+    fedora_home: /fedora/fcrepo
     tomcat_xmx: 1024m
     fedora_version: 3.8.1
     solr_version: 4.2.0
     fits_version: 0.8.5
+    database_host: localhost
     mysql_databases:
       - name: fedora3
         encoding: latin1

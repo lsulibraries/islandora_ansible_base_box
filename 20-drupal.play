@@ -9,4 +9,3 @@
     - vars/drupal.yml
   roles:
     - geerlingguy.drupal
-

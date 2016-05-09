@@ -1,0 +1,46 @@
+---
+- name: Ensure cache mount point exists
+  file:
+    path: "{{work_dir}}"
+    state: directory
+
+- name: Mount cache volume	
+  mount:
+    src: /dev/xvde
+    name: "{{work_dir}}"
+    state: mounted
+    fstype: ext4
+
+- name: Ensure fedora mount point exists
+  file:
+    path: "{{ fedora_home }}"
+    state: directory
+
+- name: make fs
+  filesystem:
+    dev: /dev/xvdf
+    fstype: ext4
+
+- name: Mount fedora volume	
+  mount:
+    src: /dev/xvdf
+    name: "{{ fedora_home }}"
+    state: mounted
+    fstype: ext4
+
+- name: Ensure drupal mount point exists
+  file:
+    path: "{{ drupal_core_path }}"
+    state: directory
+
+- name: make fs
+  filesystem:
+    dev: /dev/xvdr
+    fstype: ext4
+
+- name: Mount drupal volume	
+  mount:
+    src: /dev/xvdr
+    name: "{{ drupal_core_path }}"
+    state: mounted
+    fstype: ext4

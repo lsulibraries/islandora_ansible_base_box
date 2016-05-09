@@ -1,8 +1,5 @@
 ---
-work_dir: /opt/ansible
-
-semaphores_dir: /opt/ansible
-semaphores_header: "## This semaphore is managed by Ansible - do not edit! ##"
+work_dir: /cache
 
 default_owner: ansible
 
@@ -75,11 +72,12 @@ mysql_users:
     password: drupal
     priv: drupal.*:ALL
 
-drupal_core_path: /var/www/drupal
-drupal_web_root: /var/www/drupal
+drupal_core_path: /drupal/root
+drupal_web_root: "{{ drupal_core_path }}"
 install_php_devtools: false
 
 
+fedora_home: /fedora
 fedora_version: 3.8.1
 solr_version: 4.2.0
 fits_home: "/usr/local/fits"

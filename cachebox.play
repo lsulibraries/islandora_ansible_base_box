@@ -1,23 +1,4 @@
-- hosts: localhost
-  connection: local
-  gather_facts: False
- # vars:
-#    - 
-  tasks:
-    - name: setup box
-      local_action:
-        module: ec2
-        aws_region: us-west-2
-        aws_access_key: AKIAJ4ATUQGJT7XRGUDQ
-        aws_secret_key: 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
-        region: us-west-2
-        group: test
-        instance_type: t2.micro
-        image: ami-9abea4fb
-        wait: yes
-        wait_timeout: 500
-        count: 1
-        instance_tags:
-           test: deleteme
-        vpc_subnet_id: subnet-31bef546
-        assign_public_ip: yes
+- hosts: cache
+  gather_facts: True
+  vars:
+    - work_dir: /data
