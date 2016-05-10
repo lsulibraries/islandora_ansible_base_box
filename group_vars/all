@@ -3,10 +3,16 @@ work_dir: /cache
 
 default_owner: ansible
 
+drupal_mount_path: /drupal
+drupal_core_path: /drupal/root
+drupal_web_root: "{{ drupal_core_path }}"
+install_php_devtools: false
+
+
 ## overrides on geerlingguy's apache vars
 apache_vhosts:
   # Additional properties: 'serveradmin, serveralias, extra_parameters'.
-  - {servername: "islandora.dev", documentroot: "/var/www/drupal", serveralias: {"lsu.islandora.dev", "uno.islandora.dev"}}
+  - {servername: islandora.dev, documentroot: "{{ drupal_core_path }}", serveralias: lsu.islandora.dev}
 
 apache_remove_default_vhost: true
 
@@ -52,29 +58,37 @@ php_display_errors: "On"
 php_display_startup_errors: "On"
 
 ## override mysql vars 
+
+drupal_database_host: localhost
+drupal_database_name: drupal
+drupal_database_user: drupal
+drupal_database_pswd: drupal
+
+fedora_database_host: localhost
+fedora_database_name: fedora3
+fedora_database_user: fedoraAdmin
+fedora_database_pswd: fedoraAdmin
+
 mysql_databases:
-  - name: fedora3
+  - name: "{{ fedora_database_name }}"
     encoding: latin1
     collation: latin1_general_ci
 
-  - name: drupal
+  - name: "{{ drupal_database_name }}"
     encoding: latin1
     collation: latin1_general_ci
 
 mysql_users:
-  - name: fedoraAdmin
-    host: 'localhost'
-    password: fedoraAdmin
-    priv: fedora3.*:ALL
+  - name: "{{ fedora_database_user }}"
+    host: '{{ fedora_database_host }}'
+    password: "{{ fedora_database_pswd }}"
+    priv: "{{ fedora_database_name }}.*:ALL"
 
-  - name: drupal
-    host: 'localhost'
-    password: drupal
-    priv: drupal.*:ALL
+  - name: "{{ drupal_database_user }}"
+    host: '{{ drupal_database_host }}'
+    password: "{{ drupal_database_pswd }}"
+    priv: "{{ drupal_database_name }}.*:ALL"
 
-drupal_core_path: /drupal/root
-drupal_web_root: "{{ drupal_core_path }}"
-install_php_devtools: false
 
 
 fedora_home: /fedora
@@ -83,3 +97,4 @@ solr_version: 4.2.0
 fits_home: "/usr/local/fits"
 fits_version: 0.8.5
 ansible_home: /home/ansible
+

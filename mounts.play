@@ -30,7 +30,7 @@
 
 - name: Ensure drupal mount point exists
   file:
-    path: "{{ drupal_core_path }}"
+    path: "{{ drupal_mount_path }}"
     state: directory
 
 - name: make fs
@@ -41,6 +41,6 @@
 - name: Mount drupal volume	
   mount:
     src: /dev/xvdr
-    name: "{{ drupal_core_path }}"
+    name: "{{ drupal_mount_path }}"
     state: mounted
     fstype: ext4

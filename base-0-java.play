@@ -3,5 +3,6 @@
 - include: 10-cache.play
 - include: 11-java.play
 - include: 15-islandora-system-dependencies.play
-- include: 20-drupal.play
-- include: 21-install-islandora-main-site.play
+- include: 17-drupal-dependencies.play
+#- include: 20-drupal.play
+#- include: 21-install-islandora-main-site.play
