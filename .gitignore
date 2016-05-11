@@ -7,5 +7,5 @@ production
 .bundle
 *.retry
 *.box
-/nbproject/private/
+/nbproject/*
 islandora.pem

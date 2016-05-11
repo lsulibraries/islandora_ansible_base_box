@@ -58,13 +58,13 @@ php_display_errors: "On"
 php_display_startup_errors: "On"
 
 ## override mysql vars 
-
-drupal_database_host: localhost
+database_host: lsulibraries-ldl.cykxhacjd1z2.us-west-2.rds.amazonaws.com
+drupal_database_host: "{{ database_host }}"
 drupal_database_name: drupal
 drupal_database_user: drupal
 drupal_database_pswd: drupal
 
-fedora_database_host: localhost
+fedora_database_host: "{{ database_host }}"
 fedora_database_name: fedora3
 fedora_database_user: fedoraAdmin
 fedora_database_pswd: fedoraAdmin
