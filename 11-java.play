@@ -13,7 +13,7 @@
     fedora_version: 3.8.1
     solr_version: 4.2.0
     fits_version: 0.8.5
-    database_host: localhost
+    database_host: lsulibraries-ldl.cykxhacjd1z2.us-west-2.rds.amazonaws.com
     mysql_databases:
       - name: fedora3
         encoding: latin1
