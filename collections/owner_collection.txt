@@ -142,4 +142,4 @@ state-lhp: state-lwp: state-p267101coll4:
 
 NSU 
 MPA: NCC: 
-nsu-mpa:
+nsu-mpa: nsu-ncc:
