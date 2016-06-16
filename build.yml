@@ -10,4 +10,4 @@
 - include: java.yml
 
 - include: drupal.yml
-#- include: islandora.yml
+- include: islandora.yml
