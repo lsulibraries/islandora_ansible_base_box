@@ -1,7 +1,7 @@
 *~
 reset.sh
 .vagrant/*
-production
+production*
 *.jar
 .#*
 .bundle
@@ -9,3 +9,5 @@ production
 *.box
 /nbproject/private/
 islandora.pem
+packer.log
+inventories/*

@@ -1,0 +1,50 @@
+---
+- hosts: all
+  become: yes
+  tasks: # TODO - add checks for existing filesystems
+
+    - name: Ensure cache mount point exists
+      file:
+        path: "{{ cache_dir }}"
+        state: directory
+
+    - name: Mount cache volume  
+      mount:
+        src: /dev/xvdh
+        name: "{{ cache_dir }}"
+        state: mounted
+        fstype: ext4
+
+    - name: Ensure fedora mount point exists
+      file:
+        path: "{{ fedora_volume_mount_point }}"
+        state: directory
+
+    - name: make fs
+      filesystem:
+        dev: /dev/xvdi
+        fstype: ext4
+
+    - name: Mount fedora volume 
+      mount:
+        src: /dev/xvdi
+        name: "{{ fedora_volume_mount_point }}"
+        state: mounted
+        fstype: ext4
+
+    - name: Ensure drupal mount point exists
+      file:
+        path: "{{ drupal_volume_mount_point }}"
+        state: directory
+
+    - name: make fs
+      filesystem:
+        dev: /dev/xvdj
+        fstype: ext4
+
+    - name: Mount drupal volume 
+      mount:
+        src: /dev/xvdj
+        name: "{{ drupal_volume_mount_point }}"
+        state: mounted
+        fstype: ext4
