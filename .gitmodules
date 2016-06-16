@@ -52,3 +52,6 @@
 [submodule "roles/ansible-role-islandora-collections"]
 	path = roles/ansible-role-islandora-collections
 	url = https://github.com/lsulibraries/ansible-role-islandora-collections
+[submodule "roles/ansible-role-islandora-build-prep"]
+	path = roles/ansible-role-islandora-build-prep
+	url = https://github.com/lsulibraries/ansible-role-islandora-build-prep

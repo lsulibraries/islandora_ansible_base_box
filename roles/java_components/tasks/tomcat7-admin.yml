@@ -1,9 +1,0 @@
----
-- name: Install tomcat admin
-  apt:
-    name: tomcat7-admin
-
-- name: Restart tomcat7
-  service:
-    name: tomcat7
-    state: restarted

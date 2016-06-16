@@ -1,9 +1,0 @@
----
-common_packages:
-  - git
-  - curl
-  - wget
-  - tree
-  - htop
-  - emacs 
-  - zip
