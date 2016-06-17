@@ -8,3 +8,4 @@ mysql_root_password: root
 mysql_local_installation: false
 mysql_login_host: localhost
 attach_mounts: true
+drupal_reverse_proxies_ips: 172.31.47.14

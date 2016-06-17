@@ -23,6 +23,7 @@ institutions:
 
 environment_type: dev
 tomcat_xmx: "{{ (ansible_memtotal_mb*0.5)|int|abs }}m"
+fqdn_suffix: ldltest.lib.lsu.edu
 
 # software versions
 fedora_version: 3.8.1
@@ -41,6 +42,7 @@ fits_home: "/usr/local/fits"
 drupal_core_path: /var/www/ldl
 drupal_volume_mount_point: /opt/mounts/drupal
 drupal_home_link_target: "{{ drupal_volume_mount_point }}/ldl"
+drupal_reverse_proxies_ips: 172.31.47.14
 
 ###################
 # roles/build-prep/
