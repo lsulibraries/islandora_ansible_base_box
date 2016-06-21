@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
       ansible.verbose = 'vv'
       ansible.extra_vars = {
         mysql_local_installation: "true",
-        attach_mounts: false
+        attach_mounts: false,
         drupal_reverse_proxy: false
       }
     end
