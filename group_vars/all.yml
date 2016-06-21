@@ -103,6 +103,7 @@ php_packages:
   - php-soap
   - php5-xsl
   - php5-json
+  - php5-mysql
 
 #################
 # drupal
