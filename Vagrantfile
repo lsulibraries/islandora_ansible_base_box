@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
   #config.vm.post_up_message = "Access Islandora at localhost:8000\nAccess Tomcat at localhost:8080"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "8000"
+    vb.memory = "4000"
   end
   
   config.vm.provision "ansible" do |ansible|
