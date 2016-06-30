@@ -1,18 +1,17 @@
-tahil, tahil-aaw, tahil-abw, tahil-apc, tahil-hpl, tahil-lpc, tahil-rtp
-lsu, lsu-lsap, lsu-brs, lsu-ibe, lsu-act, lsu-brt, lsu-cff, lsu-clt, lsu-cnp, lsu-cwp, lsu-dyp, lsu-fcc, lsu-gcs, lsu-gfm, lsu-gsc, lsu-hpl, lsu-jja, lsu-lhc, lsu-lnp, lsu-mdp, lsu-mrf, lsu-nmi, lsu-noe, lsu-pvc, lsu-rbc, lsu-rbo, lsu-sce, lsu-tjp, lsu-uap, lsu-wls, lsu-mmf, lsu-msw, lsu-neworleans, lsu-nonnegexposures, lsu-p120701coll12, lsu-p120701coll19, lsu-p120701coll22, lsu-p120701coll23, lsu-p120701coll24, lsu-p15140coll10, lsu-p15140coll12, lsu-p15140coll14, lsu-p15140coll17, lsu-p15140coll18, lsu-p15140coll46, lsu-p15140coll54, lsu-p15140coll56, lsu-p16313coll10, lsu-p16313coll31, lsu-p16313coll34, lsu-p16313coll35, lsu-p16313coll54, lsu-p16313coll56, lsu-p16313coll57, lsu-p16313coll58, lsu-p16313coll69, lsu-p16313coll76, lsu-p16313coll79, lsu-p16313coll8, lsu-p16313coll80, lsu-p16313coll81, lsu-p16313coll85, lsu-p16313coll9, lsu-sartainengravings, lsu-tensas, lsu-thw, lsu-tld, lsu-wri-boy, lsu-lapur, lsu-p15140coll21, lsu-p15140coll35, lsu-p15140coll41, lsu-cwd, lsu-crd, lsu-p16313coll45, lsu-p16313coll77, lsu-p16313coll89, lsu-rjr, lsu-p16313coll51, lsu-p16313coll52
-lsm, lsm-cca, lsm-hlm, lsm-jaz, lsm-lct, lsm-loh, lsm-lps, lsm-ccc, lsm-fqa, lsm-koh, lsm-mpc, lsm-nac, lsm-ncc, lsm-osc, lsm-p120701coll18, lsm-p15140coll60, lsm-p16313coll83, lsm-rmc, lsm-rsp, lsm-rtc
+tahil, tahil-aaw, tahil-abw, tahil-apc, tahil-hpl, tahil-lpc, tahil-rtp, tahil-bba
+lsu, lsu-lsap, lsu-brs, lsu-ibe, lsu-act, lsu-brt, lsu-cff, lsu-clt, lsu-cnp, lsu-cwp, lsu-dyp, lsu-fcc, lsu-gcs, lsu-gfm, lsu-gsc, lsu-hpl, lsu-jja, lsu-lhc, lsu-lnp, lsu-mdp, lsu-mrf, lsu-nmi, lsu-noe, lsu-pvc, lsu-rbc, lsu-rbo, lsu-sce, lsu-tjp, lsu-uap, lsu-wls, lsu-mmf, lsu-msw, lsu-neworleans, lsu-nonegexposures, lsu-p120701coll12, lsu-p120701coll19, lsu-p120701coll22, lsu-p120701coll23, lsu-p120701coll24, lsu-p15140coll10, lsu-p15140coll12, lsu-p15140coll14, lsu-p15140coll17, lsu-p15140coll18, lsu-p15140coll46, lsu-p15140coll54, lsu-p15140coll56, lsu-p16313coll10, lsu-p16313coll31, lsu-p16313coll34, lsu-p16313coll35, lsu-p16313coll54, lsu-p16313coll56, lsu-p16313coll57, lsu-p16313coll58, lsu-p16313coll69, lsu-p16313coll76, lsu-p16313coll79, lsu-p16313coll8, lsu-p16313coll80, lsu-p16313coll81, lsu-p16313coll85, lsu-p16313coll9, lsu-sartainengravings, lsu-tensas, lsu-thw, lsu-tld, lsu-wri-boy, lsu-lapur, lsu-p15140coll21, lsu-p15140coll35, lsu-p15140coll41, lsu-cwd, lsu-crd, lsu-p16313coll45, lsu-p16313coll77, lsu-p16313coll89, lsu-rjr, lsu-p16313coll51, lsu-p16313coll52
+lsm, lsm-cca, lsm-hlm, lsm-jaz, lsm-lct, lsm-loh, lsm-lps, lsm-ccc, lsm-fqa, lsm-koh, lsm-mpc, lsm-nac, lsm-ncc, lsm-osc, lsm-p120701coll18, lsm-p15140coll60, lsm-p16313coll83, lsm-rmc, lsm-rsp, lsm-rtc  lsm-jnt, lsm-lst, lsm-fjc, lsm-gfm,
 ull, ull-lsa, ull-p16313coll26, ull-sip, ull-p16313coll25,
 loyno, loyno-jsn, loyno-lmnp01, loyno-etd, loyno-p120701coll17, loyno-p120701coll9, loyno-p16313coll20, loyno-p16313coll24,  loyno-p16313coll28, loyno-p16313coll48, loyno-p16313coll5, loyno-p16313coll87, loyno-p16313coll91, loyno-p16313coll93, loyno-p16313coll44, loyno-p120701coll28, loyno-p120701coll27
 subr, subr-hwj, subr-vbc
 latech, latech-cmprt
-hnoc, lsu-aww, hnoc-clf, hnoc-p15140coll1, hnoc-p15140coll28, hnoc-p16313coll21, hnoc-p16313coll65, hnoc-p16313coll17
-lsm, lsm-jnt, lsm-lst, lsm-fjc, lsm-gfm,
-lsuhscs, lsuhscs-gwm, lsuhscs-p15140coll23, lsuhscs-p15140coll44
+hnoc, lsu-aww, hnoc-clf, hnoc-p15140coll1, hnoc-p15140coll28, hnoc-p16313coll21, hnoc-p16313coll65, hnoc-p16313coll17, hnoc-lph
+lsuhscs, lsuhscs-gwm, lsuhscs-p15140coll23, lsuhscs-p15140coll44, lsuhscs-ncc
 nicholls, nicholls-mpf, nicholls-p15140coll51
 ulm, ulm-p120701coll10, ulm-p15140coll26, ulm-p15140coll27, ulm-p16313coll1, ulm-p16313coll43
-lsuhscno, lsuhscno-lsubk01, lsuhscno-ncc, lsuhscno-p120701coll26, lsuhscno-p120701coll17, lsuhscno-p15140coll16, lsuhscno-p15140coll19, lsuhscno-p15140coll49, lsuhscno-p15140coll50, lsuhscno-p15140coll52, lsuhscno-p16313coll19
+lsuhscno, lsuhscno-lsubk01, lsuhscno-ncc, lsuhscno-p120701coll26, lsuhscno-p120701coll17, lsuhscno-p15140coll16, lsuhscno-p15140coll19, lsuhscno-p15140coll49, lsuhscno-p15140coll50, lsuhscno-p15140coll52, lsuhscno-p16313coll19, lsuhscno-p120701coll7
 lsus, lsus-tbp, lsus-nwm, lsus-stc
-uno, uno-p120701coll29, uno-fbm, uno-hic, uno-ani, uno-jbf, uno-p120701coll13, uno-p120701coll15, uno-p120701coll25, uno-p120701coll8, uno-p15140coll30, uno-p15140coll31, uno-p15140coll4, uno-p15140coll42, uno-p15140coll7, uno-p16313coll2, uno-p16313coll22, uno-p16313coll23, uno-p16313coll61, uno-p16313coll62, uno-p16313coll72, uno-p16313coll86
+uno, uno-p120701coll29, uno-fbm, uno-hic, uno-ani, uno-jbf, uno-p120701coll13, uno-p120701coll15, uno-p120701coll25, uno-p120701coll8, uno-p15140coll30, uno-p15140coll31, uno-p15140coll4, uno-p15140coll42, uno-p15140coll7, uno-p16313coll2, uno-p16313coll22, uno-p16313coll23, uno-p16313coll61, uno-p16313coll62, uno-p16313coll72, uno-p16313coll86, uno-omsa
 mcneese, mcneese-p16313coll74, mcneese-psl
 state, state-lhp, state-lwp, state-p267101coll4
 nsu, nsu-mpa, nsu-ncc
