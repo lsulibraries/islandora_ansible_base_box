@@ -5,13 +5,16 @@ work_dir: /opt/
 institutions:
   - hnoc
   - latech
+  - ldl
   - loyno
   - lsm
   - lsu
   - lsuhsc
   - lsuhscs
+  - lsus
   - mcneese
   - nicholls
+  - nsu
   - state
   - subr
   - tahil
@@ -19,7 +22,6 @@ institutions:
   - ull
   - ulm
   - uno
-  - ldl
 
 environment_type: dev
 tomcat_xmx: "{{ (ansible_memtotal_mb*0.5)|int|abs }}m"
