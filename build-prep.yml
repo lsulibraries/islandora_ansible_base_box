@@ -14,3 +14,8 @@
     - name: Install apache-php
       apt:
         name: libapache2-mod-php5
+
+    - name: Install mysql-client when needed
+      apt:
+        name: mysql-client
+      when: not mysql_local_installation

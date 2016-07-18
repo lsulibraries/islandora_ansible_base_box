@@ -1,12 +1,21 @@
 ---
 - hosts: all
-  become: no
+  become: yes
   tasks:
 
 
 #########################################
 # FEDORA
+#    - apt: name=python-virtualenv
+#    - apt: name=python-pip
+    - apt:
+        name: "{{ item }}"
+      with_items:
+        - python-mysqldb
+        - mysql-client
 
+    - debug: var=mysql_login_host
+    - debug: var=mysql_local_installation
     - name: Ensure fcrepo database exists.
       mysql_db:
         login_host: "{{ mysql_login_host }}"

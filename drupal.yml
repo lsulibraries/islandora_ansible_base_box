@@ -33,7 +33,7 @@
         --account-pass={{ drupal_admin_password}}
         --db-url=mysql://{{ item }}:{{ item }}@{{ mysql_login_host }}/{{ item }}
         --db-su={{ mysql_login_user }}
-        --db-su-pw={{ mysql_login_user }}
+        --db-su-pw={{ mysql_login_password }}
         --sites-subdir={{ item }}
         chdir={{ drupal_core_path }}
         creates={{ drupal_core_path }}/sites/{{ item }}/settings.php
