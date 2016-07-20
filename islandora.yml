@@ -3,4 +3,4 @@
   become: yes
   roles:
     - ansible-role-islandora
-#    - ansible-role-islandora-local
+    - ansible-role-islandora-local
