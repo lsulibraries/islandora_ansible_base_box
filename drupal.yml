@@ -30,7 +30,7 @@
         drush si {{ drupal_install_profile }} -y
         --site-name="{{ item }}"
         --account-name={{ drupal_admin_name }}
-        --account-pass={{ drupal_admin_password}}
+        --account-pass={{ drupal_admin_password }}
         --db-url=mysql://{{ item }}:{{ item }}@{{ mysql_login_host }}/{{ item }}
         --db-su={{ mysql_login_user }}
         --db-su-pw={{ mysql_login_password }}
