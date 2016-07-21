@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: yes
+  roles: 
+    - ansible-role-islandora-build-prep
+    - java8
+    - geerlingguy.git
+    - geerlingguy.apache
+    - geerlingguy.php
+    - geerlingguy.php-mysql
+    - geerlingguy.composer
+    - geerlingguy.drush
+  tasks:
+    - name: Install apache-php
+      apt:
+        name: libapache2-mod-php5
+
+    - name: Install mysql-client when needed
+      apt:
+        name: mysql-client
+      when: not mysql_local_installation

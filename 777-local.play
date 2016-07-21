@@ -1,6 +1,0 @@
----
-- hosts: all
-  become: true
-  tasks:
-    - debug:
-        - msg: "add new steps here"

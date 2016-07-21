@@ -1,0 +1,121 @@
+---
+################
+# GLOBAL
+work_dir: /opt/
+institutions:
+  - hnoc
+  - latech
+  - ldl
+  - loyno
+  - lsm
+  - lsu
+  - lsuhsc
+  - lsuhscs
+  - lsus
+  - mcneese
+  - nicholls
+  - nsu
+  - state
+  - subr
+  - tahil
+  - tulane
+  - ull
+  - ulm
+  - uno
+
+environment_type: dev
+tomcat_xmx: "{{ (ansible_memtotal_mb*0.5)|int|abs }}m"
+fqdn_suffix: ldltest.lib.lsu.edu
+
+# software versions
+fedora_version: 3.8.1
+solr_version: 4.2.0
+fits_version: 0.8.5
+
+# software sha256
+fedora_sha256: f0fcde6cfd2ff8080a88f8c472fdf107df9a56ce2cbbd78d2e3c4db7480a4bdf
+
+# software locations 
+fedora_home: /usr/local/fedora
+fedora_volume_mount_point: /opt/mounts/fedora
+fedora_home_link_target: "{{ fedora_volume_mount_point }}/fcrepo"
+fits_home: "/usr/local/fits"
+
+drupal_core_path: /var/www/ldl
+drupal_volume_mount_point: /opt/mounts/drupal
+drupal_home_link_target: "{{ drupal_volume_mount_point }}/ldl"
+drupal_reverse_proxies_ips: 172.31.47.14
+
+###################
+# roles/build-prep/
+cache_dir: "/cache"
+attach_mounts: true
+
+##########################
+# roles/geerlingguy.apache
+apache_remove_default_vhost: true
+apache_global_vhost_settings: |
+  DirectoryIndex index.php
+  Options FollowSymLinks
+
+# local vars
+apache_servername: local.dev
+apache_documentroot: "{{ drupal_core_path }}"
+
+# local overrides
+apache_vhosts:
+  # Additional optional properties: 'serveradmin, serveralias, extra_parameters'.
+  - servername: "{{ apache_servername }}"
+    documentroot: "{{ apache_documentroot }}"
+
+apache_mods_enabled:
+  - rewrite.load
+  - proxy.load
+  - proxy_http.load
+
+########################
+# mysql
+mysql_root_username: root
+mysql_root_password: root
+mysql_local_installation: false
+mysql_login_host: localhost
+mysql_login_user: "{{ mysql_root_username }}"
+mysql_login_password: "{{ mysql_root_password }}"
+
+
+##########################
+# PHP
+php_upload_max_filesize: 4096M
+php_post_max_size: 4096M
+php_display_errors: On
+php_date_timezone: America/Chicago
+php_memory_limit: 2048M
+php_packages:
+  - php5
+  - php5-mcrypt
+  - php5-cli
+  - php5-common
+  - php5-curl
+  - php5-dev
+  - php5-fpm
+  - php5-gd
+  - php-pear
+  - php5-apcu
+  - libpcre3-dev
+  - php-soap
+  - php5-xsl
+  - php5-json
+  - php5-mysql
+
+#################
+# drupal
+drupal_repo_url: https://git.drupal.org/project/drupal.git
+drupal_core_version: 7.x
+drupal_keep_updated: no
+drupal_install_profile: standard
+drupal_admin_name: admin
+drupal_admin_password: admin
+drupal_main_site_database: ldl
+drupal_main_site_name: LDL
+drupal_main_site_database_user: ldl
+drupal_main_site_database_password: ldl

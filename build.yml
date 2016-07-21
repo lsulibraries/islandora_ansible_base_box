@@ -1,0 +1,12 @@
+---
+- include: mounts.yml
+  when: attach_mounts
+
+- include: build-prep.yml
+- include: mysql.yml
+
+- include: databases.yml
+- include: java.yml
+
+- include: drupal.yml
+- include: islandora.yml
