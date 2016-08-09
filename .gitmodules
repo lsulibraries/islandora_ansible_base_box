@@ -55,3 +55,6 @@
 [submodule "roles/ansible-role-islandora-build-prep"]
 	path = roles/ansible-role-islandora-build-prep
 	url = https://github.com/lsulibraries/ansible-role-islandora-build-prep
+[submodule "migrations"]
+	path = migrations
+	url = https://github.com/lsulibraries/islandora_migrations.git
