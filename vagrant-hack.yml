@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+
+    - name: check if files have already been copied
+      stat: 
+        path: /opt/mounts/drupal/ldl/INSTALL.txt
+      register: drupal_files
+
+    - name: copy webroot into mounted shared folder
+      command: "rsync -avz /opt/mounts/tmp/ldl/ /opt/mounts/drupal/ldl"
+      when: not drupal_files.stat.exists

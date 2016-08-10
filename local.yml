@@ -1,0 +1,3 @@
+---
+- include: vagrant-hack.yml
+- include: migrate.yml
