@@ -3,7 +3,6 @@
   become: true
   tasks:
 
-
     - name: check if files have already been copied
       stat: 
         path: /opt/mounts/drupal/ldl/INSTALL.txt
@@ -12,3 +11,20 @@
     - name: copy webroot into mounted shared folder
       command: "rsync -avz /opt/mounts/tmp/ldl/ /opt/mounts/drupal/ldl"
       when: not drupal_files.stat.exists
+
+    - name: Link each site folder to its fqdn
+      file:
+        state: link
+        path: "{{ drupal_core_path }}/sites/{{ item }}.{{ fqdn_suffix }}"
+        src: "{{ drupal_core_path }}/sites/{{ item }}"
+      with_items: "{{ institutions }}"
+
+    - name: temporarily remove clunky xdebug installation
+      apt:
+        name: php5-xdebug
+        state: absent
+
+    - name: remove xdebug config
+      file:
+        path: /etc/php5/mods-available/xdebug.ini
+        state: absent
