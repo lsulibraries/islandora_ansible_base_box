@@ -14,9 +14,7 @@
         state: directory
 
     - name: copy webroot into mounted shared folder
-      synchronize:
-        src: /opt/mounts/tmp/ldl/
-        dest: /opt/mounts/drupal/ldl/
+      command: "rsync -avz /opt/mounts/tmp/ldl/ /opt/mounts/drupal/ldl"
       when: not drupal_files.stat.exists
 
     - name: Link each site folder to its fqdn
