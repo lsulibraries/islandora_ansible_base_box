@@ -8,8 +8,15 @@
         path: /opt/mounts/drupal/ldl/INSTALL.txt
       register: drupal_files
 
+    - name: Ensure that pseudo mount target exists
+      file:
+        path: /opt/mounts/drupal/ldl/
+        state: directory
+
     - name: copy webroot into mounted shared folder
-      command: "rsync -avz /opt/mounts/tmp/ldl/ /opt/mounts/drupal/ldl"
+      synchronize:
+        src: /opt/mounts/tmp/ldl/
+        dest: /opt/mounts/drupal/ldl/
       when: not drupal_files.stat.exists
 
     - name: Link each site folder to its fqdn

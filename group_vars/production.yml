@@ -1,12 +1,17 @@
 ---
+
 environment_type: production
+
 ########################
 # mysql
 mysql_root_username: root
 mysql_root_password: root
-
 mysql_local_installation: false
 mysql_login_host: localhost
+
 attach_mounts: true
 drupal_reverse_proxies_ips: 172.31.47.14
 fqdn_suffix: ldl.lib.lsu.edu
+
+php_upload_max_filesize: 12G
+php_post_max_size: 12G
