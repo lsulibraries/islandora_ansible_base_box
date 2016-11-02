@@ -1,5 +1,4 @@
 ---
-<<<<<<< HEAD
 #- include: migrations/migration-2016080313.yml
 #- include: migrations/migration-2016080411.yml
 #- include: migrations/migration-2016080908.yml
