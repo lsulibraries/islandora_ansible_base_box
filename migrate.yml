@@ -19,4 +19,6 @@
 #- include: migrations/migration-2016103103.yml # Dave, should we run this ?
 #- include: migrations/migration-2016110114.yml
 #- include: migrations/migration-2016110210.yml
-- include: migrations/migration-2016110308.yml
+#- include: migrations/migration-2016110308.yml
+- include: migrations/migration-2016111510.yml
+- include: migrations/migration-2016111610.yml
