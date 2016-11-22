@@ -1,3 +1,4 @@
 ---
 - include: vagrant-hack.yml
-- include: migrate.yml
+- include: v1.2.2.5.yml
+
