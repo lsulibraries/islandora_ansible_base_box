@@ -1,0 +1,6 @@
+# Top-level play for changes rooted in the 0.5.x project roadmap release plan.
+# https://trello.com/b/DFu4JyQv/islandora-roadmap
+---
+- include: migrations/migration-2016111711.yml
+- include: migrations/migration-2016112310.yml
+- include: migrations/migration-2016112311.yml
