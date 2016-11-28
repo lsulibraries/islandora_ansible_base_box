@@ -11,3 +11,7 @@ production*
 islandora.pem
 packer.log
 inventories/*
+inventory
+deploy
+group_vars/staging.yml
+group_vars/production.yml
