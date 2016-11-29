@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Set filesystem permissions wide-open for ease of dev.
+    file:
+      path: "{{ drupal_home_link_target }}"
+      mode: 0777
+      recurse: yes
+      follow: yes
