@@ -54,6 +54,10 @@ Branch and release playbooks exist in the top-level of the repo. The conceptual 
 - git checkout LDL-0.5.x     # or whatever...
 - vagrant up
 
+#### Known issues:
+
+- fetching the geshi library from sourceforge may time out (migration-2016111711.yml).
+
 ### Sample collections
 
 once you have 
