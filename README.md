@@ -77,7 +77,7 @@ cd /var/www/ldl/sites/ldl
 # Run the batch scan preprocess step as user 1, 
 # specifying the .zip location, the desired namespace, 
 # and the parent collection.
-drush -v -u 1 icbp --target=/vagrant/ulm-p15140coll27 --namespace=ulm-p15140coll27 --parent=ulm-p15140coll27:collection
+drush -v -u 1 ibsp --content_models=islandora:sp_large_image_cmodel --target=/vagrant/ulm-p15140coll27 --namespace=ulm-p15140coll27 --parent=ulm-p15140coll27:collection
 
 # this will create a batch job and will return a message containing its numeric ID, in this case, 54.
 
