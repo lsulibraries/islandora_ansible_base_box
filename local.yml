@@ -1,5 +1,5 @@
 ---
-- include: vagrant-hack.yml
-- include: v1.2.2.5.yml
+#- include: vagrant-hack.yml
+#- include: v1.2.2.5.yml
 - include: LDL-0.5.x.yml
 - include: vagrant-post-build.yml
