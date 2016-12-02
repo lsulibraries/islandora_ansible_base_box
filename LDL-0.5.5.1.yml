@@ -2,8 +2,7 @@
 ---
 - include: migrations/migration-2016112915.yml
 - include: migrations/migration-2016112916.yml
-- include: migrations/migration-2016120113.yml
 - include: migrations/migration-2016120115.yml
 - include: migrations/migration-2016120208.yml
 - include: migrations/migration-2016120212.yml
-
+- include: migrations/migration-2016120213.yml
