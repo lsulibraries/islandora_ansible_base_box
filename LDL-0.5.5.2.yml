@@ -1,3 +1,2 @@
 ---
 - include: migrations/migration-2016120513.yml
-
