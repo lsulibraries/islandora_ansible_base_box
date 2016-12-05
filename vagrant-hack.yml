@@ -23,13 +23,3 @@
         path: "{{ drupal_core_path }}/sites/{{ item }}.{{ fqdn_suffix }}"
         src: "{{ drupal_core_path }}/sites/{{ item }}"
       with_items: "{{ institutions }}"
-
-    - name: temporarily remove clunky xdebug installation
-      apt:
-        name: php5-xdebug
-        state: absent
-
-    - name: remove xdebug config
-      file:
-        path: /etc/php5/mods-available/xdebug.ini
-        state: absent
