@@ -12,3 +12,4 @@ This file should track which migrations have been applied to which systems.
 | LDL-0.5.5.1   | Prod          | 2016-12-05 0900 |       |
 | LDL-0.5.5.2   | Test          | 2016-12-06 1300 |       |
 | LDL-0.5.5.2   | Prod          | 2016-12-05 1600 |       |
+
