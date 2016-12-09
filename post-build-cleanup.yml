@@ -8,3 +8,4 @@
       mode: 0777
       recurse: yes
       follow: yes
+    when: environment_type == 'dev'
