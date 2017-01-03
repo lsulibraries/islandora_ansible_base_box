@@ -15,3 +15,5 @@ inventory
 deploy
 group_vars/staging.yml
 group_vars/production.yml
+group_vars/testing.yml
+sample-data/*
