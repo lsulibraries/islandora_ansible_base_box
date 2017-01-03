@@ -9,3 +9,7 @@
       recurse: yes
       follow: yes
     when: environment_type == 'dev'
+
+  - name: Reset Drupal permissions.
+    command: "sh /opt/scripts/drupal-permissions/drupal-fix-permissions.sh --drupal_path={{ drupal_core_path }} --drupal_user=root --httpd_group=www-data"
+    when: environment_type != 'dev'
