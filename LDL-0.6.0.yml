@@ -1,3 +1,4 @@
 ---
 - include: migrations/migration-2017010513.yml
 - include: migrations/migration-2017010515.yml
+- include: migrations/migration-2017010608.yml
