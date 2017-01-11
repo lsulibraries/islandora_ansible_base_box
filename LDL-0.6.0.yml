@@ -1,6 +1,6 @@
 ---
 - include: migrations/migration-2017010513.yml
-- include: migrations/migration-2017010515.yml
+#- include: migrations/migration-2017010515.yml # creates nodes on every run; replaced by migration-2017011110.yml in LDL-0.6.1.yml
 - include: migrations/migration-2017010608.yml
 - include: migrations/migration-2017010610.yml
 - include: migrations/migration-2017010414.yml
