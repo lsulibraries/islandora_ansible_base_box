@@ -3,6 +3,27 @@
   become: true
   tasks:
 
+    - name: deletes xdebug.ini that comes in basebox and creates an empty one
+      replace:
+        dest: /etc/php5/mods-available/xdebug.ini
+        follow: yes
+        regexp: '.*'
+        replace: ''
+
+    - name: writes new xdebug.ini
+      blockinfile:
+        dest: /etc/php5/mods-available/xdebug.ini
+        marker: "; {mark} ANSIBLE MANAGED BLOCK"
+        insertbefore: BOF
+        content: |
+          [xdebug]
+          zend_extension=xdebug.so
+          xdebug.default_enable=1
+          xdebug.remote_enable=1
+          xdebug.remote_handler=dbgp
+          xdebug.remote_host=0.0.0.0
+          xdebug.remote_port=9000
+
     - name: check if files have already been copied
       stat: 
         path: /opt/mounts/drupal/ldl/INSTALL.txt
