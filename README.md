@@ -52,6 +52,7 @@ Branch and release playbooks exist in the top-level of the repo. The conceptual 
 - git clone --recursive https://github.com/lsulibraries/islandora_ansible
 - cd islandora_ansible
 - git checkout LDL-0.5.x     # or whatever...
+- for access to our private compound batch ingest, the keyfile 'deploy' must be placed into islandora_ansible/migrations/
 - vagrant up
 
 #### Known issues:
