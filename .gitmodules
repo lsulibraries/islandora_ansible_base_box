@@ -1,48 +1,12 @@
-[submodule "roles/geerlingguy.php"]
-	path = roles/geerlingguy.php
-	url = https://github.com/geerlingguy/ansible-role-php.git
-[submodule "roles/geerlingguy.composer"]
-	path = roles/geerlingguy.composer
-	url = https://github.com/geerlingguy/ansible-role-composer.git
-[submodule "roles/geerlingguy.git"]
-	path = roles/geerlingguy.git
-	url = https://github.com/geerlingguy/ansible-role-git.git
-[submodule "JJG-Ansible-Windows"]
-	path = JJG-Ansible-Windows
-	url = https://github.com/lsulibraries/JJG-Ansible-Windows.git
 [submodule "roles/geerlingguy.drupal"]
 	path = roles/geerlingguy.drupal
 	url = https://github.com/geerlingguy/ansible-role-drupal.git
-[submodule "roles/geerlingguy.drush"]
-	path = roles/geerlingguy.drush
-	url = https://github.com/geerlingguy/ansible-role-drush.git
-[submodule "roles/geerlingguy.apache"]
-	path = roles/geerlingguy.apache
-	url = https://github.com/geerlingguy/ansible-role-apache.git
-[submodule "roles/geerlingguy.mysql"]
-	path = roles/geerlingguy.mysql
-	url = https://github.com/geerlingguy/ansible-role-mysql.git
-[submodule "roles/geerlingguy.php-mysql"]
-	path = roles/geerlingguy.php-mysql
-	url = https://github.com/geerlingguy/ansible-role-php-mysql.git
 [submodule "roles/ansible-java8-oracle"]
 	path = roles/ansible-java8-oracle
 	url = https://github.com/malk/ansible-java8-oracle.git
 [submodule "roles/ansible-java8"]
 	path = roles/ansible-java8
 	url = https://github.com/gregwhitaker/ansible-java8.git
-[submodule "roles/ansible-tomcat7"]
-	path = roles/ansible-tomcat7
-	url = https://github.com/lsulibraries/ansible-tomcat7.git
-[submodule "roles/java8"]
-	path = roles/java8
-	url = https://github.com/gregwhitaker/ansible-java8.git
-[submodule "roles/ansible-role-islandora"]
-	path = roles/ansible-role-islandora
-	url = https://github.com/lsulibraries/ansible-role-islandora.git
-[submodule "roles/ansible-role-islandora-local"]
-	path = roles/ansible-role-islandora-local
-	url = https://github.com/lsulibraries/ansible-role-islandora-local.git
 [submodule "roles/ansible-role-islandora-subsite"]
 	path = roles/ansible-role-islandora-subsite
 	url = https://github.com/lsulibraries/ansible-role-islandora-subsite.git
@@ -52,9 +16,6 @@
 [submodule "roles/ansible-role-islandora-collections"]
 	path = roles/ansible-role-islandora-collections
 	url = https://github.com/lsulibraries/ansible-role-islandora-collections
-[submodule "roles/ansible-role-islandora-build-prep"]
-	path = roles/ansible-role-islandora-build-prep
-	url = https://github.com/lsulibraries/ansible-role-islandora-build-prep
 [submodule "migrations"]
 	path = migrations
 	url = https://github.com/lsulibraries/islandora_migrations.git

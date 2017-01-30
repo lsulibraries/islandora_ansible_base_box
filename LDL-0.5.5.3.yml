@@ -1,6 +1,0 @@
----
-- include: migrations/migration-2016120813.yml
-- include: migrations/migration-2016120914.yml
-- include: migrations/migration-2016120915.yml
-- include: migrations/migration-2016121409.yml
-- include: migrations/migration-2016121510.yml
