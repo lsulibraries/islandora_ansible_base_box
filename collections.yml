@@ -1,0 +1,71 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    s3_collections:
+      - { title: "Huey P. Long", description: "Photos of the Governor", filename: "LSU-HPL.zip", cmodels: "islandora:sp_large_image_cmodel", namespace: "lsu-hpl", type: "zip" }
+      
+  tasks:
+
+  - name: "Check for collections that we've already downloaded."
+    stat:
+      path: "/tmp/{{ item.filename }}"
+    with_items: "{{ s3_collections }}"
+    register: collections
+
+  - name: Ensure pip is installed.
+    apt:
+      name: python-pip
+      cache_valid_time: 86400
+      state: installed
+
+  - name: Ensure boto is installed.
+    pip:
+      name: boto
+      state: present
+
+  - name: Get Collections.
+    s3:
+      bucket: lsulibraries-sample-collections
+      object: "{{ item.1.filename }}"
+      dest: "/tmp/{{ item.1.filename }}"
+      mode: get
+#      overwrite: different
+      aws_access_key: AKIAIEFMJE6G4UWRJS2Q
+      aws_secret_key: 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
+    with_together:
+      - "{{ collections.results }}"
+      - "{{ s3_collections }}"
+    when: not item.0.stat.exists
+
+  - name: Ensure that we have the latest isla utils.
+    git:
+      version: 3c935a9dd123653efb6ab0f3f5e9daad0bd35424
+      repo: https://github.com/lsulibraries/islandora_utils
+      dest: "{{ drupal_core_path }}/sites/all/modules/islandora_utils"
+      force: yes
+    register: git_deploy
+    until: git_deploy|succeeded
+
+  - name: ensure ingest semaphore file exists
+    file:
+      path: /opt/ingested
+      state: touch
+    
+  - name: Get record of ingested items.
+    shell: cat /opt/ingested
+    register: ingested
+    
+  - name: Create collection containers (parents).
+    command: "drush  --user=admin islandora-utils-create-collection --description='{{ item.description }}' --namespace={{ item.namespace }}:collection --parent=islandora:root --title='{{ item.title }}'"
+    args:
+      chdir: "{{ drupal_core_path }}"
+    with_items: "{{ s3_collections }}"
+
+  - name: Configure ingest.
+    shell: "drush --user=admin islandora_batch_scan_preprocess --content_models='{{ item.cmodels }}' --parent={{ item.namespace }}:collection --parent_relationship_pred=isMemberOfCollection --type={{ item.type }} --scan_target=/tmp/{{ item.filename }} --namespace={{ item.namespace }} && drush -u 1 ibi && echo '{{ item.namespace }} ' >> /opt/ingested"
+    args:
+      chdir: "{{ drupal_core_path }}"
+    with_items: "{{ s3_collections }}"
+    when: "'{{ item.namespace }}' not in ingested.stdout"
+

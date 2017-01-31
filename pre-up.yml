@@ -4,15 +4,14 @@
   tasks:
 
     - name: deletes xdebug.ini that comes in basebox and creates an empty one
-      replace:
-        dest: /etc/php5/mods-available/xdebug.ini
-        follow: yes
-        regexp: '.*'
-        replace: ''
+      file:
+        path: /etc/php5/mods-available/xdebug.ini
+        state: absent
 
     - name: writes new xdebug.ini
       blockinfile:
         dest: /etc/php5/mods-available/xdebug.ini
+        create: yes
         marker: "; {mark} ANSIBLE MANAGED BLOCK"
         insertbefore: BOF
         content: |
