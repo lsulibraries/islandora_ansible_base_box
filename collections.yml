@@ -3,7 +3,9 @@
   become: yes
   vars:
     s3_collections:
-      - { title: "Huey P. Long", description: "Photos of the Governor", filename: "LSU-HPL.zip", cmodels: "islandora:sp_large_image_cmodel", namespace: "lsu-hpl", type: "zip" }
+      - { cpd: false, title: "Huey P. Long", description: "Photos of the Governor", filename: "LSU-HPL.zip", cmodels: "islandora:sp_large_image_cmodel", namespace: "lsu-hpl", type: "zip" }
+      - { cpd: false, title: "Camp Ruston", description: "heterogenous collection", filename: "latech-cmprt-simple.zip", cmodels: "islandora:sp_large_image_cmodel", namespace: "latech-cmprt", type: "zip" }
+      - { cpd: true, title: "Camp Ruston", description: "heterogenous collection", filename: "latech-cmprt-cpd.zip", cmodels: "islandora:sp_large_image_cmodel", namespace: "latech-cmprt", type: "zip", dirname: "latech-cmprt-cpd"}
       
   tasks:
 
@@ -62,10 +64,28 @@
       chdir: "{{ drupal_core_path }}"
     with_items: "{{ s3_collections }}"
 
-  - name: Configure ingest.
-    shell: "drush --user=admin islandora_batch_scan_preprocess --content_models='{{ item.cmodels }}' --parent={{ item.namespace }}:collection --parent_relationship_pred=isMemberOfCollection --type={{ item.type }} --scan_target=/tmp/{{ item.filename }} --namespace={{ item.namespace }} && drush -u 1 ibi && echo '{{ item.namespace }} ' >> /opt/ingested"
+  - name: Unzip cpd.zips. // this is a workaround until cpd_batch takes .zips
+    unarchive:
+      src: "/tmp/{{ item.filename }}"
+      dest: "/tmp/"
+      remote_src: yes
+    with_items: "{{ s3_collections }}"
+
+  - name: Ingest (simple).
+    shell: "drush --user=admin islandora_batch_scan_preprocess --content_models='{{ item.cmodels }}' --parent={{ item.namespace }}:collection --parent_relationship_pred=isMemberOfCollection --type={{ item.type }} --scan_target=/tmp/{{ item.filename }} --namespace={{ item.namespace }} && drush -u 1 ibi && echo '{{ item.filename }} ' >> /opt/ingested"
     args:
       chdir: "{{ drupal_core_path }}"
     with_items: "{{ s3_collections }}"
-    when: "'{{ item.namespace }}' not in ingested.stdout"
+    when: "'{{ item.filename }}' not in ingested.stdout and not {{ item.cpd }}"
 
+  - name: ensure that islandora_batch is enabled.
+    command: drush en -y islandora_batch
+    args:
+      chdir: "{{ drupal_core_path }}"
+
+  - name: Ingest (cpd).
+    shell: "drush islandora_compound_batch_preprocess -u 1 --src=/tmp/{{ item.dirname }} --parent={{ item.namespace }}:collection --namespace={{ item.namespace }}  && drush -u 1 ibi && echo '{{ item.filename }} ' >> /opt/ingested"
+    args:
+      chdir: "{{ drupal_core_path }}"
+    with_items: "{{ s3_collections }}"
+    when: "'{{ item.filename }}' not in ingested.stdout and {{ item.cpd }}"
